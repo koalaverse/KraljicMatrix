@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^README$
+^README\.md$
+^README\.html$
+^README\.Rmd$

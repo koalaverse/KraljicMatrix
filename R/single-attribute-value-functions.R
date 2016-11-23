@@ -2,7 +2,7 @@
 #'
 #' \code{SAVF_score} computes the exponential single attribute value score of \code{x}
 #'
-#' @param x Vector of values to score
+#' @param x Numeric vector of values to score
 #' @param x_low Lower bound anchor point (can be different than \code{min(x)})
 #' @param x_high Upper bound anchor point (can be different than \code{max(x)})
 #' @param rho Exponential constant for the value function
@@ -146,8 +146,8 @@ SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho
 #' @export
 #' @example
 #'
-#' # Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
-#' # of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we can visualize the error terms for
+#' Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
+#' of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we can visualize the error terms for
 #' rho values between 0-1:
 #'
 #' d_x <- c(3, 4, 5)
@@ -185,18 +185,47 @@ SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low, rh
   # plot value
   df <- data.frame(rho = rho, delta = delta)
   ggplot2::ggplot(df, ggplot2::aes(rho, delta)) +
-    geom_line() +
-    geom_point(ggplot2::aes(true_rho, min(delta)), shape = 23, size = 2, fill = "white")
+    ggplot2::geom_line() +
+    ggplot2::geom_point(ggplot2::aes(true_rho, min(delta)), shape = 23, size = 2, fill = "white")
 
 }
 
 
-# plot SAVF versus desired points
-# desired_x = elicited input value
-# desired_y = elicited value score related to elicited input value
-# xlow = lower bound of input range
-# xhigh = upper bound of input range
-# rho = the exponential constant for the value function
+#' Plot the single attribute value curve
+#'
+#' \code{SAVF_plot} plots the single attribute value curve along with the
+#' subject matter desired values for comparison
+#'
+#' @param desired_x Elicited input x value(s)
+#' @param desired_y Elicited value score related to elicited input value(s)
+#' @param x_low Lower bound anchor point (can be different than \code{min(x)})
+#' @param x_high Upper bound anchor point (can be different than \code{max(x)})
+#' @param rho Exponential constant for the value function
+#'
+#' @return A plot that visualizes the single attribute value curve along with the
+#' subject matter desired values for comparison
+#'
+#' @seealso
+#'
+#' \code{\link{SAVF_plot_rho_error}} for plotting the rho squared error terms
+#'
+#' \code{\link{SAVF_score}} for computing the exponential single attribute value score
+#'
+#' @export
+#' @example
+#' Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
+#' of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, the preferred rho is 0.54. We can
+#' visualize this value function:
+#'
+#' d_x <- c(3, 4, 5)
+#' d_v <- c(.75, .9, 1)
+#'
+#' SAVF_plot(desired_x = c(3, 4, 5),
+#'           desired_v = c(.75, .9, 1),
+#'           x_low = 1,
+#'           x_high = 5,
+#'           rho = 0.54)
+
 SAVF_plot <- function(desired_x, desired_v, x_low, x_high, rho){
 
   # return error if x_low is not less than x_high
@@ -217,8 +246,8 @@ SAVF_plot <- function(desired_x, desired_v, x_low, x_high, rho){
   df <- data.frame(x = x, v = v)
   desired <- data.frame(x = desired_x, v = desired_v)
 
-  ggplot(df, aes(x, v)) +
-    geom_line() +
-    geom_point(data = desired, aes(x, v), shape = 23, size = 2, fill = "white")
+  ggplot2::ggplot(df, ggplot2::aes(x, v)) +
+    ggplot2::geom_line() +
+    ggplot2::geom_point(data = desired, ggplot2::aes(x, v), shape = 23, size = 2, fill = "white")
 
 }

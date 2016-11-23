@@ -4,7 +4,6 @@ Title: An Quantified Implementation of the Kraljic Matrix
 Version: 0.1.0
 Author: person("Bradley", "Boehmke", email = "bradleyboehmke@gmail.com",
                role = c("aut", "cre"))
-Maintainer: The package maintainer <yourself@somewhere.net>
 Description: An R package for implementing the Kraljic Matrix to strategically
     analyze a firm’s purchasing portfolio. It combines multi-objective decision
     analysis to measure purchasing characteristics and uses this information to

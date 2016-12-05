@@ -15,12 +15,61 @@ Towards this goal, the most established portfolio model in literature and practi
 
 # The Kraljic Portfolio Matrix
 
-Kraljic (1983) introduced the first comprehensive portfolio approach for purchasing and supply management.  Although other models have been developed, Kraljic’s KPM approach has become the dominant methodology built upon in literature and the foundation for purchasing strategies for many organizations. Kraljic’s approach leverages a portfolio matrix that classifies products on the basis of two dimensions: the external dimension (‘Supply Risk’) concerns the factors regarding suppliers and supply market, while the internal dimension (‘Profit Impact’) relates to the importance and profit impact of a given product. Each dimension needs to be assessed against a number of variables where an overall classification score (‘low’ and ‘high’) is established. The result is a  matrix and a classification in four categories: non-critical, leverage, bottleneck, and strategic items as illustrated in Figure 1. This categorization allows commodities to be classified in a way that minimizes the supply risk while maximizing purchasing power and profits of the firm.
+Kraljic (1983) introduced the first comprehensive portfolio approach for purchasing and supply management.  Although other models have been developed, Kraljic’s KPM approach has become the dominant methodology built upon in literature and the foundation for purchasing strategies for many organizations. Kraljic’s approach leverages a portfolio matrix that classifies products on the basis of two dimensions: the external dimension (‘Supply Risk’) concerns the factors regarding suppliers and supply market, while the internal dimension (‘Profit Impact’) relates to the importance and profit impact of a given product. Each dimension needs to be assessed against a number of variables where an overall classification score (‘low’ and ‘high’) is established. The result is a  matrix and a classification in four categories: non-critical, leverage, bottleneck, and strategic items as illustrated in Figure 1. This categorization allows commodities to be classified in a way that minimizes the supply risk while maximizing purchasing power and profits of the firm. Furthermore, positioning commodities in this matrix form not only enables managers to visually see trade-offs between items, but the classification also allows firms to develop distinctive management approaches for each category.[^gelderman]
 
 <center>
 <img src="images/kpm.png" alt="Kraljic Portfolio Matrix" style="width:80%;height:80%;">
 </center>
 
+# A Quantitative Approach for Positioning
+
+A significant question in applying the KPM is how to categorize purchased products and services within the matrix. How organizations measure supply risk and profit impact will vary.  Furthermore, some organizations may choose to measure their purchases against different dimensions; however, the fundamental purpose of the matrix remains.  For our purpose, we assume that the organization has developed a means to condense their measurement of each dimension to a single value.  For example, many organizations use an index (i.e. IBIS*World* Buyer Power Score) to measure one of the dimensions. Or some organizations develop an indexed value function that generates a single value score for many attributes (i.e. profit impact can be a function of volume purchased, expected growth in demand, percent of total purchase cost, impact on product quality and business growth, etc.).  However, once you have a single value that represents each dimension of the KPM, subjectivity still largely drives how they are positioned in the KPM.  The `kraljicMatrix` package was designed to assist with this concern and the examples that follow walk you through how to implement `kraljicMatrix` functions. 
+
+## Primary functions in `kraljicMatrix`
+
+Function            | Purpose
+--------------------|----------------
+SAVF_score          |
+SAVF_preferred_rho  |
+SAVF_plot_rho_error |
+SAVF_plot           |
+MAVF_score          |
+MAVF_sensitivity    |
+kraljic_quadrant    |
+kraljic_matrix      |
+
+
+## Implementation of `kraljicMatrix`
+
+We'll leverage the example data `pcs` that comes with `kraljicMatrix`. This data contains a single value that scores the x attribute (i.e. supply risk) from 1 (worst) to 5 (best) and y attribute (i.e. profit impact) from 1 (worst) to 10 (best) for 200 product and service contracts (PSC). 
+
+```{r, eval=FALSE}
+psc
+## # A tibble: 200 × 3
+##      PSC x_attribute y_attribute
+##    <chr>       <int>       <int>
+## 1   D233           3           6
+## 2   F352           3          10
+## 3   T713           2           8
+## 4   K833           1           1
+## 5   Q121           4           2
+## 6   C791           2           4
+## 7   Y207           4           7
+## 8   W439           4           1
+## 9   N290           3           9
+## 10  C251           3           4
+## # ... with 190 more rows
+```
+
+The x and y attributes are simply evaluation measures. They enable each alternative to obtain a score for each dimension. However, to plot these attributes on the KPM matrix we need to normalize the value scores such that the values are between 0-1.  To do this we can use an exponential single attribute value function (SAVF). For example, let $v_x(x_i)$ represent the normalized value of the x attribute such that $x^0$ and $x^*$ are the lowest and highest preferred value of attribute x respectively.  Thus, $v_x(x^0)=0$ and $v_x(x^*)=1$. Consequently, let $v_x(x_i)$ be the SAVF of exponential form whereby each $x_i$ is an input and $\rho_x$ is the exponential constant for $v_x(x_i)$:
+
+$$v_x(x_i)=\frac{1-e^{[-(x_i-x^0)/\rho_x]}}{1-e^{[-(x^*-x^0)/\rho_x]}} \forall i \in PSC$$
+
+However, prior to applying the SAVF to our x and y attributes we must first identify the appropriate $\rho$ value.  The benefit of applying an exponential SAVF is that it can take on many forms of increasing rates, along with aligning to a linear value function. To identify the appropriate exponential rate, subject matter expert (SME) inputs are typically evaluated and an exponential rate that most closely matches the preffered values provided by the SMEs is chosen. Thus, let's assume for our given x attribute the SME inputs suggest that x values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively.  Knowing that our x attribute is bounded between 1 and 5 we can search for a rho value between 0-1 that provides the best fit utility function using the `SAVF_preferred_rho` function.
+
 
 
 [^kraljic]: Kraljic, P. (1983). Purchasing must become supply management. *Harvard Business Review, 61*(5), 109-117.
+[^gelderman]: See [Gelderman & Semeijn (2006)](http://www.sciencedirect.com/science/article/pii/S1478409206000690) and [Gelderman & Van Weele (2003)](http://www.sciencedirect.com/science/article/pii/S147840920300044X) for more discussion regarding strategic management approaches.
+
+

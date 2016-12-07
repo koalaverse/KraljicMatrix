@@ -7,7 +7,7 @@
 #' @format A tibble with 200 rows and 3 variables:
 #' \describe{
 #'   \item{PSC}{Contract identifier for each product and service}
-#'   \item{x_attribute}{x attribute score, from 1 (worst) to 5 (best)}
-#'   \item{y_attribute}{y attribute score, from 1 (worst) to 10 (best)}
+#'   \item{x_attribute}{x attribute score, from 1 (worst) to 5 (best) in .01 increments}
+#'   \item{y_attribute}{y attribute score, from 1 (worst) to 10 (best) in .01 increments}
 #' }
 "psc"

@@ -23,49 +23,63 @@ Kraljic (1983) introduced the first comprehensive portfolio approach for purchas
 
 # A Quantitative Approach for Positioning
 
-A significant question in applying the KPM is how to categorize purchased products and services within the matrix. How organizations measure supply risk and profit impact will vary.  Furthermore, some organizations may choose to measure their purchases against different dimensions; however, the fundamental purpose of the matrix remains.  For our purpose, we assume that the organization has developed a means to condense their measurement of each dimension to a single value.  For example, many organizations use an index (i.e. IBIS*World* Buyer Power Score) to measure one of the dimensions. Or some organizations develop an indexed value function that generates a single value score for many attributes (i.e. profit impact can be a function of volume purchased, expected growth in demand, percent of total purchase cost, impact on product quality and business growth, etc.).  However, once you have a single value that represents each dimension of the KPM, subjectivity still largely drives how they are positioned in the KPM.  The `kraljicMatrix` package was designed to assist with this concern and the examples that follow walk you through how to implement `kraljicMatrix` functions. 
+A significant question in applying the KPM is how to categorize purchased products and services within the matrix. Organizations vary in how they measure supply risk and profit impact.  Furthermore, some organizations may choose to measure their purchases against different dimensions; however, the fundamental purpose of the matrix remains.  For our purpose, we assume that the organization has developed a means to condense their measurement of each dimension to a single value.  For example, many organizations use an index (i.e. IBIS*World* Buyer Power Score) to measure one of the dimensions. Or some organizations develop an indexed value function that generates a single value score for many attributes (i.e. profit impact can be a function of volume purchased, expected growth in demand, percent of total purchase cost, impact on product quality and business growth, etc.).  However, once you have a single value that represents each dimension, subjectivity still largely drives how they are positioned in the KPM.  The `kraljicMatrix` package was designed to assist with this concern and the examples that follow walk you through how to implement `kraljicMatrix` functions. 
 
 ## Primary functions in `kraljicMatrix`
 
-Function            | Purpose
---------------------|----------------
-SAVF_score          |
-SAVF_preferred_rho  |
-SAVF_plot_rho_error |
-SAVF_plot           |
-MAVF_score          |
-MAVF_sensitivity    |
-kraljic_quadrant    |
-kraljic_matrix      |
+There are eight primary functions provided by `kraljicMatrix` as follows:
+
+Function              | Purpose
+----------------------|----------------------------------------------------
+`SAVF_score`          | Computes a utility score based on an exponential single attribute value function
+`SAVF_preferred_rho`  | Computes the preferred rho that minimizes the squared error between subject matter inputs and exponentially fitted utility scores
+`SAVF_plot_rho_error` | Plots the squared error terms for the rho search space to illustrate the preferred rho that minimizes the squared error between subject matter desired values and exponentially fitted scores
+`SAVF_plot`           | Plots the single attribute utility curve along with the subject matter desired values for comparison
+`MAVF_score`          | Computes the multi-attribute value score based on `x` and `y` attribute utility scores and their respective weights
+`MAVF_sensitivity`    | Computes summary statistics for multi-attribute value scores for `x` and `y` given a range of swing weights for each attribute
+`kraljic_quadrant`    | Identifies the Kraljic purchasing matrix quadrant for each product or service based on the attribute utility scores of \code{x} and \code{y}
+`kraljic_matrix`      | Plots each product or service in the Kraljic purchasing matrix based on the attribute value score of `x` and `y`
 
 
-## Implementation of `kraljicMatrix`
-
-We'll leverage the example data `pcs` that comes with `kraljicMatrix`. This data contains a single value that scores the x attribute (i.e. supply risk) from 1 (worst) to 5 (best) and y attribute (i.e. profit impact) from 1 (worst) to 10 (best) for 200 product and service contracts (PSC). 
+Furthermore, an example dataset `psc` is provided in the `kraljicMatrix` package. This data contains 200 product and service contracts (PSC).  Each PSC has an x attribute (i.e. supply risk) score from 1 (worst) to 5 (best) and y attribute (i.e. profit impact) score from 1 (worst) to 10 (best).
 
 ```{r, eval=FALSE}
 psc
 ## # A tibble: 200 × 3
 ##      PSC x_attribute y_attribute
 ##    <chr>       <int>       <int>
-## 1   D233           3           6
-## 2   F352           3          10
-## 3   T713           2           8
-## 4   K833           1           1
-## 5   Q121           4           2
-## 6   C791           2           4
-## 7   Y207           4           7
-## 8   W439           4           1
-## 9   N290           3           9
-## 10  C251           3           4
+## 1   D233        3.01        4.84
+## 2   F352        4.34        5.64
+## 3   T713        3.37        4.30
+## 4   K833        2.67        5.53
+## 5   Q121        3.48        4.33
+## 6   C791        3.32        7.32
+## 7   Y207        3.48        5.42
+## 8   W439        2.47        3.35
+## 9   N290        1.66        4.02
+## 10  C251        1.00        7.47
 ## # ... with 190 more rows
 ```
 
-The x and y attributes are simply evaluation measures. They enable each alternative to obtain a score for each dimension. However, to plot these attributes on the KPM matrix we need to normalize the value scores such that the values are between 0-1.  To do this we can use an exponential single attribute value function (SAVF). For example, let $v_x(x_i)$ represent the normalized value of the x attribute such that $x^0$ and $x^*$ are the lowest and highest preferred value of attribute x respectively.  Thus, $v_x(x^0)=0$ and $v_x(x^*)=1$. Consequently, let $v_x(x_i)$ be the SAVF of exponential form whereby each $x_i$ is an input and $\rho_x$ is the exponential constant for $v_x(x_i)$:
+
+## Implementation of `kraljicMatrix`
+
+The x and y attributes are simply evaluation measures. They enable each product and service to obtain a score for each dimension being measured. For example, the x attribute score (1-5 in .01 increments) could be the IBIS*World* Buyer Power Score measuring supply market complexity.  However, to plot these attributes on the KPM matrix we need to normalize the value scores such that the values are between 0-1.  To do this we can use an exponential single attribute value function (SAVF). For example, let $v_x(x_i)$ represent the normalized value of the x attribute such that $x^0$ and $x^*$ are the lowest and highest preferred value of attribute x respectively.  Thus, $v_x(x^0)=0$ and $v_x(x^*)=1$. Consequently, let $v_x(x_i)$ be the SAVF of exponential form whereby each $x_i$ is an input and $\rho_x$ is the exponential constant for $v_x(x_i)$:
 
 $$v_x(x_i)=\frac{1-e^{[-(x_i-x^0)/\rho_x]}}{1-e^{[-(x^*-x^0)/\rho_x]}} \forall i \in PSC$$
 
-However, prior to applying the SAVF to our x and y attributes we must first identify the appropriate $\rho$ value.  The benefit of applying an exponential SAVF is that it can take on many forms of increasing rates, along with aligning to a linear value function. To identify the appropriate exponential rate, subject matter expert (SME) inputs are typically evaluated and an exponential rate that most closely matches the preffered values provided by the SMEs is chosen. Thus, let's assume for our given x attribute the SME inputs suggest that x values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively.  Knowing that our x attribute is bounded between 1 and 5 we can search for a rho value between 0-1 that provides the best fit utility function using the `SAVF_preferred_rho` function.
+However, prior to applying the SAVF to our x and y attributes we must first identify the appropriate $\rho$ value.  The benefit of applying an exponential SAVF is that it can take on many forms of increasing rates, along with aligning to a linear value function. To identify the appropriate exponential rate, subject matter expert (SME) inputs are typically evaluated and an exponential rate that most closely matches the preffered values provided by the SMEs is chosen. Thus, let's assume for our given x attribute the SME inputs suggest that x attribute values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively.  Knowing that our x attribute is bounded between 1 and 5 we can search for a rho value between 0-1 that provides the best fit utility function using the `SAVF_preferred_rho` function. 
+
+```{r, eval=FALSE}
+SAVF_preferred_rho(desired_x = c(3, 4, 5),
+                   desired_v = c(.8, .9, 1),
+                   x_low = 1,
+                   x_high = 5,
+                   rho_low = 0,
+                   rho_high = 1)
+## [1] 0.6531
+```
+
 
 
 

@@ -68,7 +68,7 @@ The x and y attributes are simply evaluation measures. They enable each product 
 
 $$v_x(x_i)=\frac{1-e^{[-(x_i-x^0)/\rho_x]}}{1-e^{[-(x^*-x^0)/\rho_x]}} \forall i \in PSC$$
 
-However, prior to applying the SAVF to our x and y attributes we must first identify the appropriate $\rho$ value.  The benefit of applying an exponential SAVF is that it can take on many forms of increasing rates, along with aligning to a linear value function. To identify the appropriate exponential rate, subject matter expert (SME) inputs are typically evaluated and an exponential rate that most closely matches the preffered values provided by the SMEs is chosen. Thus, let's assume for our given x attribute the SME inputs suggest that x attribute values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively.  Knowing that our x attribute is bounded between 1 and 5 we can search for a rho value between 0-1 that provides the best fit utility function using the `SAVF_preferred_rho` function. 
+However, prior to applying the SAVF to our x and y attributes we must first identify the appropriate $\rho$ value.  The benefit of applying an exponential SAVF is that it can take on many forms of increasing rates, along with aligning to a linear value function. Consequently, if certain x attribute values are valued more than other values an exponential SAVF will capture this utility curve. To identify the appropriate exponential rate, subject matter expert (SME) inputs are typically evaluated and an exponential rate that most closely matches the preffered values provided by the SMEs is chosen. Thus, let's assume for our given x attribute the SME inputs suggest that x attribute values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively (this represents a decreasing rate of return utility curve).  Knowing that our x attribute is bounded between 1 and 5 we can search for a rho value between 0-1 that provides the best fit utility function using the `SAVF_preferred_rho` function. 
 
 ```{r, eval=FALSE}
 SAVF_preferred_rho(desired_x = c(3, 4, 5),
@@ -80,10 +80,239 @@ SAVF_preferred_rho(desired_x = c(3, 4, 5),
 ## [1] 0.6531
 ```
 
+Thus, we can see that $\rho = 0.6531$ provides the best fit exponential SAVF. We can illustrate this two ways.  First, we can use `SAVF_plot` to plot the single attribute utility curve compared to the subject matter desired values. 
+
+```{r, echo=FALSE}
+SAVF_score <- function(x, x_low, x_high, rho){
+
+  # return error if x_low is not less than x_high
+  if(x_low >= x_high){
+    stop("`x_low` must be less than `x_high`", call. = FALSE)
+  }
+
+  # return error if rho is not a single value
+  if (length(rho) != 1) {
+    stop("`rho` must be a numeric value of length 1", call. = FALSE)
+  }
+
+  # generate SAVF values
+  value <- (1 - exp(-rho * (x - x_low))) / (1 - exp(-rho * (x_high - x_low)))
+
+  # return values
+  return(value)
+
+}
+
+SAVF_plot <- function(desired_x, desired_v, x_low, x_high, rho){
+
+  # return error if x_low is not less than x_high
+  if(x_low >= x_high){
+    stop("`x_low` must be less than `x_high`", call. = FALSE)
+  }
+
+  # return error if rho is not a single value
+  if (length(rho) != 1) {
+    stop("`rho` must be a numeric value of length 1", call. = FALSE)
+  }
+
+  # create string of x values
+  x <- seq(x_low, x_high, by = (x_high - x_low) / 1000)
+  v <- SAVF_score(x, x_low, x_high, rho)
+
+  # create data frames to plot
+  df <- data.frame(x = x, v = v)
+  desired <- data.frame(x = desired_x, v = desired_v)
+
+  ggplot2::ggplot(df, ggplot2::aes(x, v)) +
+    ggplot2::geom_line() +
+    ggplot2::geom_point(data = desired, ggplot2::aes(x, v), shape = 23, size = 2, fill = "white")
+
+}
+```
+
+```{r, fig.align='center', fig.height=3, fig.width=6}
+
+
+SAVF_plot(desired_x = c(3, 4, 5),
+          desired_v = c(.8, .9, 1),
+          x_low = 1,
+          x_high = 5,
+          rho = 0.6531)
+```
+
+We can also visualize the errors of the $\rho$ search space with `SAVF_plot_rho_error`, which plots the squared error terms for all $\rho$ values within the $\rho$ search space to illustrate the preferred rho that minimizes the squared error between subject matter desired values and exponentially fitted scores. 
+
+```{r, echo=FALSE}
+SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low, rho_high){
+
+  # return error if x_low is not less than x_high
+  if(x_low >= x_high){
+    stop("`x_low` must be less than `x_high`", call. = FALSE)
+  }
+
+  # return error if rho_low is not less than rho_high
+  if(rho_low >= rho_high){
+    stop("`rho_low` must be less than `rho_high`", call. = FALSE)
+  }
+
+  # compute sequence of rho values
+  rho <- seq(rho_low, rho_high, by = (rho_high - rho_low) / 10000)
+  rho <- rho[rho != 0]
+
+  # compute deltas between preferred and fitted values
+  delta <- sapply(rho, function(x) sum((SAVF_score(desired_x, x_low, x_high, x) - desired_v)^2))
+
+  # return rho that produces smallest error
+  true_rho <- rho[which(delta == min(delta))]
+
+  # plot value
+  df <- data.frame(rho = rho, delta = delta)
+  ggplot2::ggplot(df, ggplot2::aes(rho, delta)) +
+    ggplot2::geom_line() +
+    ggplot2::geom_point(ggplot2::aes(true_rho, min(delta)), shape = 23, size = 2, fill = "white")
+
+}
+```
+
+```{r, fig.align='center', fig.height=3, fig.width=6}
+SAVF_plot_rho_error(desired_x = c(3, 4, 5),
+                    desired_v = c(.75, .9, 1),
+                    x_low = 1,
+                    x_high = 5,
+                    rho_low = 0,
+                    rho_high = 1)
+```
+
+
+Once we've identified the preferred $\rho$ value, we can now apply the exponential SAVF with `SAVF_score` to normalize our attributes based on our utility curve. 
+
+```{r, echo=FALSE}
+SAVF_score <- function(x, x_low, x_high, rho){
+
+  # return error if x_low is not less than x_high
+  if(x_low >= x_high){
+    stop("`x_low` must be less than `x_high`", call. = FALSE)
+  }
+
+  # return error if rho is not a single value
+  if (length(rho) != 1) {
+    stop("`rho` must be a numeric value of length 1", call. = FALSE)
+  }
+
+  # generate SAVF values
+  value <- (1 - exp(-rho * (x - x_low))) / (1 - exp(-rho * (x_high - x_low)))
+
+  # return values
+  return(value)
+
+}
+
+load("/Users/bradleyboehmke/Desktop/KraljicMatrix/data/psc.rda")
+```
+
+```{r, collapse=TRUE, message=FALSE, warning=FALSE}
+# using dplyr to add a new variable while preserving existing data
+library(dplyr)
+
+# here we are assuming we found the appropriate rho value for the y attribute using
+# the same process as mentioned above
+psc <- psc %>%
+  mutate(x_SAVF_score = SAVF_score(x_attribute, 1, 5, .653),
+         y_SAVF_score = SAVF_score(y_attribute, 1, 10, .70))
+
+psc
+```
+
+Now that we have the normalized x and y attribute utility scores we can proceed with plotting each PSC within the Kraljic matrix with `kraljic_matrix`.
+
+```{r, echo=FALSE}
+kraljic_matrix <- function(data, x, y){
+
+  # return error if x or y are not numeric values
+  x_col <- data[[deparse(substitute(x))]]
+  y_col <- data[[deparse(substitute(y))]]
+
+  if(!is.numeric(x_col) | !is.numeric(y_col)){
+    stop("data for both column inputs must be numeric", call. = FALSE)
+  }
+
+  # plot Kraljic Matrix
+  ggplot2::ggplot(data, ggplot2::aes_string(deparse(substitute(x)), deparse(substitute(y)))) +
+    ggplot2::geom_point() +
+    ggplot2::geom_vline(xintercept = .5) +
+    ggplot2::geom_hline(yintercept = .5) +
+    ggplot2::coord_cartesian(xlim = c(0,1), ylim = c(0,1)) +
+    ggplot2::scale_x_reverse()
+}
+```
+
+
+```{r, fig.align='center', fig.width=7, fig.height=5}
+kraljic_matrix(psc, x_SAVF_score, y_SAVF_score)
+```
+
+This illustrates that most of our PSCs fall in the "Leverage" (upper left) quadrant while a few fall in the "Strategic" (upper right) and "Non-critical" (lower left) quadrants and no PSCs fall in the "Bottleneck" quadrant.  Keep in mind that each category benefits from a different strategic sourcing approach.  So decision-makers benefit from understanding specifically which products and services align to each so that they can coordinate the appropriate sourcing strategy for that particular product or service.  We can easily do this with the `kraljic_quadrant` function.
+
+```{r, echo=FALSE}
+kraljic_quadrant <- function(x, y){
+
+  ifelse(x > .5 & y >= .5, "Leverage",
+         ifelse(x > .5 & y < .5, "Critical",
+                ifelse(x <= .5 & y >= .5, "Strategic",
+                       ifelse(x < .5 & y < .5, "Bottleneck", NA))))
+
+}
+```
+
+```{r, collapse=TRUE}
+psc %>%
+  mutate(quadrant = kraljic_quadrant(x_SAVF_score, y_SAVF_score))
+```
+
+Lastly, it is important to keep in mind that decision-makers may weight the importance of each attribute differently. Consequently, due to certain market environments, decision-makers may weight the x attribute (i.e. supply risk) of greater importance than the y attribute (i.e. profit impact). Thus, we can prioritize PSCs based on this preference by applying a multi-attribute value function (MAVF) with swing weights.  Swing weight values for x and y attributes ($w_x$ and $w_y$ respectively) are typically elicited from SMEs. This allows for calculation of the interaction swing weight $w_{xy} = 1 - w_x - w_y$.  Thus, we can calculate the MAVF as outlined by Keeney and Raiffa (1993)[^keeney]:
+
+$$V(x,y) = w_x v_x (x) + w_y v_y (y) + w_{xy} v_x (x) v_y (y)$$
+
+Thus, we can apply the `MAVF_score` function to compute the multi-attribute value score based on `x` and `y` attribute utility scores and their respective swing weights. So if through discussions with decision-makers we identify swing weight values of 0.65 and 0.35 for the x and y attributes respectively, we can obtain the computed MAVF score for each PSC:
+
+```{r, echo=FALSE}
+MAVF_score <- function(x, y, x_wt, y_wt){
+
+  # return error if x and y are different lengths
+  if(length(x) != length(y)){
+    stop("`x` and `y` must be the same length", call. = FALSE)
+  }
+
+  # return error if x or y weights are not a single value
+  if (length(x_wt) != 1 | length(y_wt) != 1) {
+    stop("x and y weights must be numeric values of length 1", call. = FALSE)
+  }
+
+  x * x_wt + y * y_wt + (1 - x_wt - y_wt) * x * y
+
+}
+```
+
+```{r, collapse=TRUE}
+psc %>%
+  mutate(MAVF = MAVF_score(x_SAVF_score, y_SAVF_score, 0.65, 0.35))
+```
+
+This allows us to quickly dissect our PSCs. For example, if decision-makers are most concerned with the "Leverage" quadrant but want to assess the top 10 PSCs based on the decision-makers preferences of the attributes we can efficiently make this assessment.  This identifies the top 10 PSCs that are most likely to benefit from a strategic sourcing approach specifically designed for "Leverage" PSCs.
+
+```{r, collapse=TRUE}
+psc %>%
+  mutate(MAVF = MAVF_score(x_SAVF_score, y_SAVF_score, 0.65, 0.35),
+         quadrant = kraljic_quadrant(x_SAVF_score, y_SAVF_score)) %>%
+  filter(quadrant == "Leverage") %>%
+  top_n(10, wt = MAVF)
+```
 
 
 
 [^kraljic]: Kraljic, P. (1983). Purchasing must become supply management. *Harvard Business Review, 61*(5), 109-117.
 [^gelderman]: See [Gelderman & Semeijn (2006)](http://www.sciencedirect.com/science/article/pii/S1478409206000690) and [Gelderman & Van Weele (2003)](http://www.sciencedirect.com/science/article/pii/S147840920300044X) for more discussion regarding strategic management approaches.
+[^keeney]: Keeney, R., & Raiffa, H. (1993). *Decisions with multiple objectives: preferences and value trade-offs*. Cambridge University Press.
+
 
 

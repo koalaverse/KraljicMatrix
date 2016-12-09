@@ -16,7 +16,7 @@
 #' \code{\link{SAVF_preferred_rho}} for identifying the preferred rho
 #'
 #' @export
-#' @example
+#' @examples
 #' # The single attribute x is bounded between 1 and 5 and follows an exponential
 #' # utility curve with rho = .653
 #'
@@ -73,7 +73,7 @@ SAVF_score <- function(x, x_low, x_high, rho){
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
 #' @export
-#' @example
+#' @examples
 #'
 #' # Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
 #' # of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we can search for a rho value
@@ -144,7 +144,7 @@ SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
 #' @export
-#' @example
+#' @examples
 #'
 #' Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
 #' of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we can visualize the error terms for
@@ -212,7 +212,7 @@ SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low, rh
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
 #' @export
-#' @example
+#' @examples
 #' Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
 #' of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, the preferred rho is 0.54. We can
 #' visualize this value function:

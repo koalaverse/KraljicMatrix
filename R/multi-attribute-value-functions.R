@@ -17,7 +17,7 @@
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
 #' @export
-#' @example
+#' @examples
 #'
 #' Given the following \code{x} and \code{y} attribute values with \code{x} and
 #' \code{y} swing weight values of 0.65 and 0.35 respectively, we can compute
@@ -77,7 +77,7 @@ MAVF_score <- function(x, y, x_wt, y_wt){
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
 #' @export
-#' @example
+#' @examples
 #' Given the following data frame that contains \code{x} and \code{y} attribute
 #' values for each product or service contract, we can compute how the range of
 #' swing weights for each \code{x} and \code{y} attribute influences the multi-
@@ -132,13 +132,13 @@ MAVF_sensitivity <- function(data, x, y, x_wt_min, x_wt_max, y_wt_min, y_wt_max)
   }
 
   # add new columns
-  data$Min. <- Min.
-  data$`1st Qu` <- `1st Qu.`
-  data$Median <- Median
-  data$Mean <- Mean
-  data$`3rd Qu.` <- `3rd Qu.`
-  data$Max. <- Max.
-  data$Range <- Range
+  data$MAVF_Min <- Min.
+  data$MAVF_1st_Q <- `1st Qu.`
+  data$MAVF_Median <- Median
+  data$MAVF_Mean <- Mean
+  data$MAVF_3rd_Q <- `3rd Qu.`
+  data$MAVF_Max <- Max.
+  data$MAVF_Range <- Range
 
 
   # return data

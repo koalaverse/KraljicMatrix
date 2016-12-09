@@ -14,8 +14,7 @@
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value
 #' score for \code{x} and \code{y}
 #'
-#' @export
-#' @example
+#' @examples
 #'
 #' Given the following \code{x} and \code{y} attribute values we can plot each
 #' product or service in the purchasing matrix:
@@ -23,12 +22,14 @@
 #' # to add a new variable while preserving existing data
 #' library(dplyr)
 #'
-#'psc2 <- psc %>%
-#'  mutate(x_SAVF_score = SAVF_score(x_attribute, 1, 5, .653),
-#'         y_SAVF_score = SAVF_score(y_attribute, 1, 10, .7))
+#' psc2 <- psc %>%
+#'   mutate(x_SAVF_score = SAVF_score(x_attribute, 1, 5, .653),
+#'          y_SAVF_score = SAVF_score(y_attribute, 1, 10, .7))
 #'
 #' kraljic_matrix(psc2, x_SAVF_score, y_SAVF_score)
 #'
+#' @export
+
 kraljic_matrix <- function(data, x, y){
 
   # return error if x or y are not numeric values

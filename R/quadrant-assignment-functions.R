@@ -15,7 +15,7 @@
 #' score for \code{x} and \code{y}
 #'
 #' @export
-#' @example
+#' @examples
 #'
 #' Given the following \code{x} and \code{y} attribute values  we can determine
 #' which quadrant each product or service falls in:

@@ -308,6 +308,84 @@ psc %>%
   top_n(10, wt = MAVF)
 ```
 
+And finally, since our swing weight inputs are subjective in nature we may wish to perform a senstivity analysis on these swing weights to see their impact on MAVF scores.  The `MAVF_sensitivity` function executes a sensitivity analysis by performing a Monte Carlo simulation with 1000 trials for each product or service (row). Each trial randomly selects a weight from a uniform distribution between lower and upper bound swing weight parameters and calculates the mult-attribute utility score. From these trials, summary statistics for each product or service (row) are calculated and reported for the final output.
+
+```{r, echo=FALSE}
+MAVF_sensitivity <- function(data, x, y, x_wt_min, x_wt_max, y_wt_min, y_wt_max){
+
+  # return error if x_wt_min is not less than x_wt_max
+  if(x_wt_min >= x_wt_max){
+    stop("`x_wt_min` must be less than `x_wt_max`", call. = FALSE)
+  }
+
+  # return error if y_wt_min is not less than y_wt_max
+  if(y_wt_min >= y_wt_max){
+    stop("`y_wt_min` must be less than `y_wt_max`", call. = FALSE)
+  }
+
+  # create random wts
+  x_wt <- runif(1000, min = x_wt_min, max = x_wt_max)
+  y_wt <- runif(1000, min = y_wt_min, max = y_wt_max)
+  w_wt <- 1 - x_wt - y_wt
+
+  # parse out vectors from data
+  x_col <- data[[deparse(substitute(x))]]
+  y_col <- data[[deparse(substitute(y))]]
+
+  # create vectors to fill
+  Min. <- vector(mode = "numeric", length = nrow(data))
+  `1st Qu.` <- vector(mode = "numeric", length = nrow(data))
+  Median <- vector(mode = "numeric", length = nrow(data))
+  Mean <- vector(mode = "numeric", length = nrow(data))
+  `3rd Qu.` <- vector(mode = "numeric", length = nrow(data))
+  Max. <- vector(mode = "numeric", length = nrow(data))
+  Range <- vector(mode = "numeric", length = nrow(data))
+
+  # loop through to compute values for each x y pair
+  for(i in 1:nrow(data)){
+    s <- summary(x_col[i] * x_wt + y_col[i] * y_wt + (1 - x_wt - y_wt) * x_col[i] * y_col[i])
+    Min.[i] <- s[1]
+    `1st Qu.`[i] <- s[2]
+    Median[i] <- s[3]
+    Mean[i] <- s[4]
+    `3rd Qu.`[i] <- s[5]
+    Max.[i] <- s[6]
+    Range[i] <- s[6] - s[1]
+  }
+
+  # add new columns
+  data$MAVF_Min <- Min.
+  data$MAVF_1st_Q <- `1st Qu.`
+  data$MAVF_Median <- Median
+  data$MAVF_Mean <- Mean
+  data$MAVF_3rd_Q <- `3rd Qu.`
+  data$MAVF_Max <- Max.
+  data$MAVF_Range <- Range
+
+
+  # return data
+  data
+
+}
+```
+
+
+```{r, collapse=TRUE}
+MAVF_sensitivity(psc,
+                 x = x_SAVF_score,
+                 y = y_SAVF_score,
+                 x_wt_min = .55,
+                 x_wt_max = .75,
+                 y_wt_min = .25,
+                 y_wt_max = .45) %>%
+  select(PSC, starts_with("MAVF"))
+```
+
+
+# Additional Resources
+
+This package originated from the research illustrated in this [Kraljic Matrix paper](https://www.dropbox.com/s/vkwrirmp1bdvp66/Article%20Submitted.docx?dl=0).  Please refer to it for more details regarding Kraljic purchasing matrix literature and the single and multi-attribute value functions discussed in this vignette.
+
 
 
 [^kraljic]: Kraljic, P. (1983). Purchasing must become supply management. *Harvard Business Review, 61*(5), 109-117.

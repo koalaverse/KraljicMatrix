@@ -9,6 +9,8 @@ SAVF_plot_rho_error(desired_x, desired_v, x_low, x_high, rho_low, rho_high)
 \arguments{
 \item{desired_x}{Elicited input x value(s)}
 
+\item{desired_v}{Elicited value score related to elicited input value(s)}
+
 \item{x_low}{Lower bound anchor point (can be different than \code{min(x)})}
 
 \item{x_high}{Upper bound anchor point (can be different than \code{max(x)})}
@@ -16,8 +18,6 @@ SAVF_plot_rho_error(desired_x, desired_v, x_low, x_high, rho_low, rho_high)
 \item{rho_low}{Lower bound of the exponential constant search space for a best fit value function}
 
 \item{rho_high}{Upper bound of the exponential constant search space for a best fit value function}
-
-\item{desired_y}{Elicited value score related to elicited input value(s)}
 }
 \value{
 A plot that visualizes the squared error terms for the rho search space
@@ -29,12 +29,9 @@ between subject matter desired values and exponentially fitted scores
 }
 \examples{
 
-Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
-of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we can visualize the error terms for
-rho values between 0-1:
-
-d_x <- c(3, 4, 5)
-d_v <- c(.75, .9, 1)
+# Given the single attribute x is bounded between 1 and 5 and the subject matter experts
+# prefer x values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we
+# can visualize the error terms for rho values between 0-1:
 
 SAVF_plot_rho_error(desired_x = c(3, 4, 5),
                     desired_v = c(.75, .9, 1),

@@ -15,8 +15,8 @@
 #'
 #' \code{\link{SAVF_preferred_rho}} for identifying the preferred rho
 #'
-#' @export
 #' @examples
+#'
 #' # The single attribute x is bounded between 1 and 5 and follows an exponential
 #' # utility curve with rho = .653
 #'
@@ -29,6 +29,8 @@
 #' ## [1] 0.7800556 0.5038275 0.1468234 0.3315217 0.9605856 0.6131944 0.8001003
 #' ## [8] 0.9673124 0.9189685 0.9553165
 #'
+#' @export
+
 SAVF_score <- function(x, x_low, x_high, rho){
 
   # return error if x_low is not less than x_high
@@ -58,7 +60,7 @@ SAVF_score <- function(x, x_low, x_high, rho){
 #'
 #'
 #' @param desired_x Elicited input x value(s)
-#' @param desired_y Elicited value score related to elicited input value(s)
+#' @param desired_v Elicited value score related to elicited input value(s)
 #' @param x_low Lower bound anchor point (can be different than \code{min(x)})
 #' @param x_high Upper bound anchor point (can be different than \code{max(x)})
 #' @param rho_low Lower bound of the exponential constant search space for a best fit value function
@@ -72,15 +74,11 @@ SAVF_score <- function(x, x_low, x_high, rho){
 #'
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
-#' @export
 #' @examples
 #'
-#' # Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
-#' # of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we can search for a rho value
-#' # between 0-1 that provides the best fit utility function:
-#'
-#' d_x <- c(3, 4, 5)
-#' d_v <- c(.75, .9, 1)
+#' # Given the single attribute x is bounded between 1 and 5 and the subject matter experts
+#' # prefer x values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we
+#' # can search for a rho value between 0-1 that provides the best fit utility function:
 #'
 #' SAVF_preferred_rho(desired_x = c(3, 4, 5),
 #'                    desired_v = c(.75, .9, 1),
@@ -88,8 +86,8 @@ SAVF_score <- function(x, x_low, x_high, rho){
 #'                    x_high = 5,
 #'                    rho_low = 0,
 #'                    rho_high = 1)
-#' [1] 0.54
 #'
+#' @export
 SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho_high){
 
   # return error if x_low is not less than x_high
@@ -124,7 +122,7 @@ SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho
 #' between subject matter desired values and exponentially fitted scores
 #'
 #' @param desired_x Elicited input x value(s)
-#' @param desired_y Elicited value score related to elicited input value(s)
+#' @param desired_v Elicited value score related to elicited input value(s)
 #' @param x_low Lower bound anchor point (can be different than \code{min(x)})
 #' @param x_high Upper bound anchor point (can be different than \code{max(x)})
 #' @param rho_low Lower bound of the exponential constant search space for a best fit value function
@@ -143,15 +141,11 @@ SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho
 #'
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
-#' @export
 #' @examples
 #'
-#' Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
-#' of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we can visualize the error terms for
-#' rho values between 0-1:
-#'
-#' d_x <- c(3, 4, 5)
-#' d_v <- c(.75, .9, 1)
+#' # Given the single attribute x is bounded between 1 and 5 and the subject matter experts
+#' # prefer x values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, we
+#' # can visualize the error terms for rho values between 0-1:
 #'
 #' SAVF_plot_rho_error(desired_x = c(3, 4, 5),
 #'                     desired_v = c(.75, .9, 1),
@@ -160,6 +154,7 @@ SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho
 #'                     rho_low = 0,
 #'                     rho_high = 1)
 #'
+#' @export
 SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low, rho_high){
 
   # return error if x_low is not less than x_high
@@ -197,7 +192,7 @@ SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low, rh
 #' subject matter desired values for comparison
 #'
 #' @param desired_x Elicited input x value(s)
-#' @param desired_y Elicited value score related to elicited input value(s)
+#' @param desired_v Elicited value score related to elicited input value(s)
 #' @param x_low Lower bound anchor point (can be different than \code{min(x)})
 #' @param x_high Upper bound anchor point (can be different than \code{max(x)})
 #' @param rho Exponential constant for the value function
@@ -211,20 +206,19 @@ SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low, rh
 #'
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
-#' @export
 #' @examples
-#' Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
-#' of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, the preferred rho is 0.54. We can
-#' visualize this value function:
 #'
-#' d_x <- c(3, 4, 5)
-#' d_v <- c(.75, .9, 1)
+#' # Given the single attribute x is bounded between 1 and 5 and the subject matter experts
+#' # prefer x values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively,
+#' # the preferred rho is 0.54. We can visualize this value function:
 #'
 #' SAVF_plot(desired_x = c(3, 4, 5),
 #'           desired_v = c(.75, .9, 1),
 #'           x_low = 1,
 #'           x_high = 5,
 #'           rho = 0.54)
+#'
+#' @export
 
 SAVF_plot <- function(desired_x, desired_v, x_low, x_high, rho){
 

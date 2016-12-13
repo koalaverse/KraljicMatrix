@@ -24,15 +24,14 @@ given their respective weights
 }
 \examples{
 
-Given the following \\code{x} and \\code{y} attribute values with \\code{x} and
-\\code{y} swing weight values of 0.65 and 0.35 respectively, we can compute
-the multi-attribute utility score:
+# Given the following \\code{x} and \\code{y} attribute values with \\code{x} and
+# \\code{y} swing weight values of 0.65 and 0.35 respectively, we can compute
+# the multi-attribute utility score:
 
 x_attribute <- c(0.92, 0.79, 1.00, 0.39, 0.68, 0.55, 0.73, 0.76, 1.00, 0.74)
 y_attribute <- c(0.52, 0.19, 0.62, 1.00, 0.55, 0.52, 0.53, 0.46, 0.61, 0.84)
 
 MAVF_score(x_attribute, y_attribute, x_wt = .65, y_wt = .35)
-## [1] 0.7800 0.5800 0.8670 0.6035 0.6345 0.5395 0.6600 0.6550 0.8635 0.7750
 
 
 }

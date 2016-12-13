@@ -16,8 +16,8 @@
 #'
 #' @examples
 #'
-#' Given the following \code{x} and \code{y} attribute values we can plot each
-#' product or service in the purchasing matrix:
+#' # Given the following \code{x} and \code{y} attribute values we can plot each
+#' # product or service in the purchasing matrix:
 #'
 #' # to add a new variable while preserving existing data
 #' library(dplyr)

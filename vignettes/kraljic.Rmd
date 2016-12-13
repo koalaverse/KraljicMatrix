@@ -206,8 +206,6 @@ SAVF_score <- function(x, x_low, x_high, rho){
   return(value)
 
 }
-
-load("/Users/bradleyboehmke/Desktop/KraljicMatrix/data/psc.rda")
 ```
 
 ```{r, collapse=TRUE, message=FALSE, warning=FALSE}

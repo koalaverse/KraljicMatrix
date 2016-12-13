@@ -22,6 +22,7 @@ A vector of the same length as \code{x} with the exponential single attribute va
 \code{SAVF_score} computes the exponential single attribute value score of \code{x}
 }
 \examples{
+
 # The single attribute x is bounded between 1 and 5 and follows an exponential
 # utility curve with rho = .653
 

@@ -9,13 +9,13 @@ SAVF_plot(desired_x, desired_v, x_low, x_high, rho)
 \arguments{
 \item{desired_x}{Elicited input x value(s)}
 
+\item{desired_v}{Elicited value score related to elicited input value(s)}
+
 \item{x_low}{Lower bound anchor point (can be different than \code{min(x)})}
 
 \item{x_high}{Upper bound anchor point (can be different than \code{max(x)})}
 
 \item{rho}{Exponential constant for the value function}
-
-\item{desired_y}{Elicited value score related to elicited input value(s)}
 }
 \value{
 A plot that visualizes the single attribute value curve along with the
@@ -26,18 +26,17 @@ subject matter desired values for comparison
 subject matter desired values for comparison
 }
 \examples{
-Given the single attribute x is bounded between 1 and 5 and the subject matter experts prefer x values
-of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively, the preferred rho is 0.54. We can
-visualize this value function:
 
-d_x <- c(3, 4, 5)
-d_v <- c(.75, .9, 1)
+# Given the single attribute x is bounded between 1 and 5 and the subject matter experts
+# prefer x values of 3, 4, & 5 provide a utility score of .75, .90 & 1.0 respectively,
+# the preferred rho is 0.54. We can visualize this value function:
 
 SAVF_plot(desired_x = c(3, 4, 5),
           desired_v = c(.75, .9, 1),
           x_low = 1,
           x_high = 5,
           rho = 0.54)
+
 }
 \seealso{
 \code{\link{SAVF_plot_rho_error}} for plotting the rho squared error terms

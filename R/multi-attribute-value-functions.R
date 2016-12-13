@@ -16,20 +16,20 @@
 #'
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
-#' @export
 #' @examples
 #'
-#' Given the following \code{x} and \code{y} attribute values with \code{x} and
-#' \code{y} swing weight values of 0.65 and 0.35 respectively, we can compute
-#' the multi-attribute utility score:
+#' # Given the following \code{x} and \code{y} attribute values with \code{x} and
+#' # \code{y} swing weight values of 0.65 and 0.35 respectively, we can compute
+#' # the multi-attribute utility score:
 #'
 #' x_attribute <- c(0.92, 0.79, 1.00, 0.39, 0.68, 0.55, 0.73, 0.76, 1.00, 0.74)
 #' y_attribute <- c(0.52, 0.19, 0.62, 1.00, 0.55, 0.52, 0.53, 0.46, 0.61, 0.84)
 #'
 #' MAVF_score(x_attribute, y_attribute, x_wt = .65, y_wt = .35)
-#' ## [1] 0.7800 0.5800 0.8670 0.6035 0.6345 0.5395 0.6600 0.6550 0.8635 0.7750
 #'
 #'
+#' @export
+
 MAVF_score <- function(x, y, x_wt, y_wt){
 
   # return error if x and y are different lengths
@@ -76,12 +76,12 @@ MAVF_score <- function(x, y, x_wt, y_wt){
 #'
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value score
 #'
-#' @export
 #' @examples
-#' Given the following data frame that contains \code{x} and \code{y} attribute
-#' values for each product or service contract, we can compute how the range of
-#' swing weights for each \code{x} and \code{y} attribute influences the multi-
-#' attribute value score.
+#'
+#' # Given the following data frame that contains \code{x} and \code{y} attribute
+#' # values for each product or service contract, we can compute how the range of
+#' # swing weights for each \code{x} and \code{y} attribute influences the multi-
+#' # attribute value score.
 #'
 #' df <- data.frame(contract = 1:10,
 #'                  x_attribute = c(0.92, 0.79, 1.00, 0.39, 0.68, 0.55, 0.73, 0.76, 1.00, 0.74),
@@ -89,6 +89,8 @@ MAVF_score <- function(x, y, x_wt, y_wt){
 #'
 #' MAVF_sensitivity(df, x_attribute, y_attribute, .55, .75, .25, .45)
 #'
+#' @export
+
 MAVF_sensitivity <- function(data, x, y, x_wt_min, x_wt_max, y_wt_min, y_wt_max){
 
   # return error if x_wt_min is not less than x_wt_max
@@ -102,8 +104,8 @@ MAVF_sensitivity <- function(data, x, y, x_wt_min, x_wt_max, y_wt_min, y_wt_max)
   }
 
   # create random wts
-  x_wt <- runif(1000, min = x_wt_min, max = x_wt_max)
-  y_wt <- runif(1000, min = y_wt_min, max = y_wt_max)
+  x_wt <- stats::runif(1000, min = x_wt_min, max = x_wt_max)
+  y_wt <- stats::runif(1000, min = y_wt_min, max = y_wt_max)
   w_wt <- 1 - x_wt - y_wt
 
   # parse out vectors from data

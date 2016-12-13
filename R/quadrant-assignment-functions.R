@@ -14,22 +14,23 @@
 #' \code{\link{SAVF_score}} for computing the exponential single attribute value
 #' score for \code{x} and \code{y}
 #'
-#' @export
 #' @examples
 #'
-#' Given the following \code{x} and \code{y} attribute values  we can determine
-#' which quadrant each product or service falls in:
+#' # Given the following \code{x} and \code{y} attribute values  we can determine
+#' # which quadrant each product or service falls in:
 #'
 #' # to add a new variable while preserving existing data
 #' library(dplyr)
 #'
-#'psc2 <- psc %>%
-#'  mutate(x_SAVF_score = SAVF_score(x_attribute, 1, 5, .653),
-#'         y_SAVF_score = SAVF_score(y_attribute, 1, 10, .7))
+#' psc2 <- psc %>%
+#'   mutate(x_SAVF_score = SAVF_score(x_attribute, 1, 5, .653),
+#'          y_SAVF_score = SAVF_score(y_attribute, 1, 10, .7))
 #'
 #' psc2 %>%
 #'   mutate(quadrant = kraljic_quadrant(x_SAVF_score, y_SAVF_score))
 #'
+#' @export
+
 kraljic_quadrant <- function(x, y){
 
   ifelse(x > .5 & y >= .5, "Leverage",

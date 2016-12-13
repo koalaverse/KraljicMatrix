@@ -2,10 +2,12 @@ Package: KraljicMatrix
 Type: Package
 Title: An Quantified Implementation of the Kraljic Matrix
 Version: 0.1.0
-Author: person("Bradley", "Boehmke", email = "bradleyboehmke@gmail.com",
-    role = c("aut", "cre"))
+Authors@R: c(
+    person("Bradley", "Boehmke", email = "bradleyboehmke@gmail.com", role = c("aut", "cre")),
+    person("Jason", "Freels", email = "auburngrads@live.com", role = c("aut"))
+    )
 Maintainer: Bradley Boehmke <bradleyboehmke@gmail.com>
-Date: 2016-12-09
+Date: 2016-12-13
 Description: An R package for implementing the Kraljic Matrix to strategically
     analyze a firm’s purchasing portfolio. It combines multi-objective decision
     analysis to measure purchasing characteristics and uses this information to
@@ -15,8 +17,10 @@ BugReports: https://github.com/bradleyboehmke/KraljicMatrix/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 2.10)
 Imports:
-    ggplot2
+    ggplot2,
+    dplyr
 Suggests:
     knitr,
     rmarkdown,

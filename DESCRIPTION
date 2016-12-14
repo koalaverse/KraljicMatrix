@@ -8,7 +8,7 @@ Authors@R: c(
     )
 Maintainer: Bradley Boehmke <bradleyboehmke@gmail.com>
 Date: 2016-12-13
-Description: An R package for implementing the Kraljic Matrix to strategically
+Description: Implements the Kraljic Matrix (Kraljic, 1983) to strategically
     analyze a firm’s purchasing portfolio. It combines multi-objective decision
     analysis to measure purchasing characteristics and uses this information to
     place products and services within the Kraljic Matrix.

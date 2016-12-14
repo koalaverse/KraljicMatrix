@@ -1,3 +1,10 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Dropped the redundant "An R Package for" in the description section
+* Added a reference for the seminal Kraljic Matrix paper (no DOI exists)
+
+
 ## Test environment
 * Tested on local OS X install, R 3.3.2
 * win-builder (devel and release)

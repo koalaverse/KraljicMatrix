@@ -4,8 +4,10 @@
 
 
 ## R CMD check results
-There were no ERRORS, WARNINGS, or NOTES
+0 errors | 0 warnings | 1 note
 
+Status: 1 NOTE
+R Under development (unstable) (2016-12-12 r71777)
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package

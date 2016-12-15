@@ -1,8 +1,8 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Dropped the redundant "An R Package for" in the description section
-* Added a reference for the seminal Kraljic Matrix paper (no DOI exists)
+* Added the URL for the seminal Kraljic Matrix paper
+* Changed "An Quantified" to "A Quantified" in the title
 
 
 ## Test environment

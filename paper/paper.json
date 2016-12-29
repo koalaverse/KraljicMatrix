@@ -1,0 +1,30 @@
+{
+  "@context": "https://raw.githubusercontent.com/mbjones/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "http://orcid.org/0000-0002-3611-8516",
+      "@type": "Person",
+      "email": "bradleyboehmke@gmail.com",
+      "name": "Bradley C. Boehmke",
+      "affiliation": "Air Force Institute of Technology"
+    },
+    {
+      "@id": NULL,
+      "@type": "Person",
+      "email": "auburngrads@live.com",
+      "name": "Jason K. Freels",
+      "affiliation": "Air Force Institute of Technology"
+    }
+    ],
+  "identifier": "",
+  "codeRepository": "https://github.com/bradleyboehmke/KraljicMatrix",
+  "datePublished": "2016-12-13",
+  "dateModified": "2016-12-13",
+  "dateCreated": "2016-12-13",
+  "description": "Implements a quantified approach to the Kraljic Matrix for strategically analyzing a firm’s purchasing portfolio. It combines multi-objective decision analysis to measure purchasing characteristics and uses this information to place products and services within the Kraljic Matrix.",
+  "keywords": "purchasing analysis, decision analysis",
+  "license": "MIT",
+  "title": "KraljicMatrix",
+  "version": "0.1.0"
+}

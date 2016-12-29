@@ -1,13 +1,12 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+/Users/bradleyboehmke/Desktop/KraljicMatrix/.Rbuildignore="457D20D1"
+/Users/bradleyboehmke/Desktop/KraljicMatrix/.gitignore="59E1CDD6"
 /Users/bradleyboehmke/Desktop/KraljicMatrix/NAMESPACE="13640E02"
 /Users/bradleyboehmke/Desktop/KraljicMatrix/R/data.R="57AAB799"
 /Users/bradleyboehmke/Desktop/KraljicMatrix/R/kraljic-matrix-functions.R="43FC6662"
 /Users/bradleyboehmke/Desktop/KraljicMatrix/R/multi-attribute-value-functions.R="921B2486"
 /Users/bradleyboehmke/Desktop/KraljicMatrix/R/quadrant-assignment-functions.R="143917E2"
 /Users/bradleyboehmke/Desktop/KraljicMatrix/R/single-attribute-value-functions.R="21D39920"
+/Users/bradleyboehmke/Desktop/KraljicMatrix/paper/paper.bib="D55C6A72"
+/Users/bradleyboehmke/Desktop/KraljicMatrix/paper/paper.json="9571F678"
+/Users/bradleyboehmke/Desktop/KraljicMatrix/paper/paper.md="38798BB"
 /Users/bradleyboehmke/Desktop/KraljicMatrix/vignettes/kraljic.Rmd="4C127155"
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes

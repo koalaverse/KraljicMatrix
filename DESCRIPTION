@@ -4,8 +4,9 @@ Title: A Quantified Implementation of the Kraljic Matrix
 Version: 0.1.1
 Authors@R: c(
     person("Bradley", "Boehmke", email = "bradleyboehmke@gmail.com", role = c("aut", "cre")),
-    person("Jason", "Freels", email = "auburngrads@live.com", role = c("ctb")),
-    person("Robert", "Montgomery", email = "robert.montgomery.1@usafa.edu", role = c("ctb"))
+    person("Robert", "Montgomery", email = "robert.montgomery.1@usafa.edu", role = c("ctb")),
+    person("Ogden", "Jeffrey", email = "jeffrey.ogden@afit.edu", role = c("ctb")),
+    person("Jason", "Freels", email = "auburngrads@live.com", role = c("ctb"))
     )
 Maintainer: Bradley Boehmke <bradleyboehmke@gmail.com>
 Date: 2016-12-13

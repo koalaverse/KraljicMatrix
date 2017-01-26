@@ -12,6 +12,20 @@
     {
       "@id": NULL,
       "@type": "Person",
+      "email": "robert.montgomery.1@usafa.edu",
+      "name": "Robert T. Montgomery",
+      "affiliation": "Air Force Academy"
+    },
+    {
+      "@id": NULL,
+      "@type": "Person",
+      "email": "jeffrey.ogden@afit.edu",
+      "name": "Jeffrey A. Ogden",
+      "affiliation": "Air Force Institute of Technology"
+    },
+    {
+      "@id": NULL,
+      "@type": "Person",
       "email": "auburngrads@live.com",
       "name": "Jason K. Freels",
       "affiliation": "Air Force Institute of Technology"

@@ -7,6 +7,12 @@ authors:
  - name: Bradley C. Boehmke
    orcid: 0000-0002-3611-8516
    affiliation: Air Force Institute of Technology
+ - name: Robert T. Montgomery
+   orcid: NULL
+   affiliation: Air Force Academy
+ - name: Jeffrey A. Ogden
+   orcid: NULL
+   affiliation: Air Force Institute of Technology
  - name: Jason K. Freels
    orcid: NULL
    affiliation: Air Force Institute of Technology

@@ -6,16 +6,18 @@ tags:
 authors:
  - name: Bradley C. Boehmke
    orcid: 0000-0002-3611-8516
-   affiliation: Air Force Institute of Technology
+   affiliation: 1
  - name: Robert T. Montgomery
-   orcid: NULL
-   affiliation: Air Force Academy
+   affiliation: 2
  - name: Jeffrey A. Ogden
-   orcid: NULL
-   affiliation: Air Force Institute of Technology
+   affiliation: 1
  - name: Jason K. Freels
-   orcid: NULL
-   affiliation: Air Force Institute of Technology
+   affiliation: 1
+affiliations:
+- name: Air Force Institute of Technology
+  index: 1
+- name: Air Force Academy
+  index: 2
 date: 29 December 2016
 bibliography: paper.bib
 ---

@@ -1,4 +1,13 @@
 # KraljicMatrix
+ 
+
+**Author:** [Brad Boehmke](http://bradleyboehmke.github.io/)<br/>
+**License:** [MIT](https://opensource.org/licenses/MIT)
+
+
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/KraljicMatrix)](https://cran.r-project.org/package=KraljicMatrix)
+[![DOI](https://zenodo.org/badge/74397607.svg)](https://zenodo.org/badge/latestdoi/74397607)
+[![status](http://joss.theoj.org/papers/10.21105/joss.00170/status.svg)](http://joss.theoj.org/papers/10.21105/joss.00170)
 
 
 `KraljicMatrix` is an R package for implementing Kraljic's (1983)[^kraljic] approach to strategically analyze a firm’s purchasing portfolio.  It has two main goals:

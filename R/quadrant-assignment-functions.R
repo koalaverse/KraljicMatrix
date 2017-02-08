@@ -34,7 +34,7 @@
 kraljic_quadrant <- function(x, y){
 
   ifelse(x > .5 & y >= .5, "Leverage",
-         ifelse(x > .5 & y < .5, "Critical",
+         ifelse(x > .5 & y < .5, "Non-critical",
                 ifelse(x <= .5 & y >= .5, "Strategic",
                        ifelse(x < .5 & y < .5, "Bottleneck", NA))))
 

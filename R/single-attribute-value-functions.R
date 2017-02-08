@@ -88,7 +88,7 @@ SAVF_score <- function(x, x_low, x_high, rho){
 #'                    rho_high = 1)
 #'
 #' @export
-SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho_high){
+SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low = 0, rho_high = 1){
 
   # return error if x_low is not less than x_high
   if(x_low >= x_high){
@@ -155,7 +155,7 @@ SAVF_preferred_rho <- function(desired_x, desired_v, x_low, x_high, rho_low, rho
 #'                     rho_high = 1)
 #'
 #' @export
-SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low, rho_high){
+SAVF_plot_rho_error <- function(desired_x, desired_v, x_low, x_high, rho_low = 0, rho_high = 1){
 
   # return error if x_low is not less than x_high
   if(x_low >= x_high){

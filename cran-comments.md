@@ -1,8 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Added the URL for the seminal Kraljic Matrix paper
-* Changed "An Quantified" to "A Quantified" in the title
+* Updated output verbiage for kraljic_quadrant function
 
 
 ## Test environment
@@ -14,7 +13,7 @@ This is a resubmission. In this version I have:
 0 errors | 0 warnings | 1 note
 
 Status: 1 NOTE
-R Under development (unstable) (2016-12-12 r71777)
+R Under development (unstable) (2017-02-19 r72213)
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package

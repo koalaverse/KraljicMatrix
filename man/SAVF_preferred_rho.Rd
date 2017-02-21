@@ -4,7 +4,8 @@
 \alias{SAVF_preferred_rho}
 \title{Identify preferred rho}
 \usage{
-SAVF_preferred_rho(desired_x, desired_v, x_low, x_high, rho_low, rho_high)
+SAVF_preferred_rho(desired_x, desired_v, x_low, x_high, rho_low = 0,
+  rho_high = 1)
 }
 \arguments{
 \item{desired_x}{Elicited input x value(s)}

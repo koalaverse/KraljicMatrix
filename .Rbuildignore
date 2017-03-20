@@ -7,3 +7,4 @@
 ^images$
 ^cran-comments\.md$
 ^paper$
+^docs$

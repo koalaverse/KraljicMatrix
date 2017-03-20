@@ -47,4 +47,3 @@ SAVF_plot_rho_error(desired_x = c(3, 4, 5),
 
 \code{\link{SAVF_score}} for computing the exponential single attribute value score
 }
-

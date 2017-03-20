@@ -41,4 +41,3 @@ SAVF_score(x, x_low = 1, x_high = 5, rho = .653)
 
 \code{\link{SAVF_preferred_rho}} for identifying the preferred rho
 }
-

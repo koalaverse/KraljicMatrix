@@ -57,4 +57,3 @@ given their respective weights
 
 \code{\link{SAVF_score}} for computing the exponential single attribute value score
 }
-

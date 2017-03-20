@@ -39,4 +39,3 @@ psc2 \%>\%
 \code{\link{SAVF_score}} for computing the exponential single attribute value
 score for \code{x} and \code{y}
 }
-

@@ -39,4 +39,3 @@ kraljic_matrix(psc2, x_SAVF_score, y_SAVF_score)
 \code{\link{SAVF_score}} for computing the exponential single attribute value
 score for \code{x} and \code{y}
 }
-

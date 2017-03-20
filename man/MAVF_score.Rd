@@ -40,4 +40,3 @@ MAVF_score(x_attribute, y_attribute, x_wt = .65, y_wt = .35)
 
 \code{\link{SAVF_score}} for computing the exponential single attribute value score
 }
-

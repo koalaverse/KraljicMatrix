@@ -19,4 +19,3 @@ and y attribute (i.e. profit impact) of 200 product and service contracts (PSC).
 The variables are as follows:
 }
 \keyword{datasets}
-

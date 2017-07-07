@@ -1,11 +1,11 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Updated output verbiage for kraljic_quadrant function
+* Updated GitHub URL since we moved this to an organization GitHub account
 
 
 ## Test environment
-* Tested on local OS X install, R 3.3.2
+* Tested on local OS X install, R 3.4
 * win-builder (devel and release)
 
 

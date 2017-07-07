@@ -1,4 +1,4 @@
-# KraljicMatrix
+# KraljicMatrix <img src="tools/kraljicmatrix_logo.png" align="right" width="120" height="139" />
  
 
 **Author:** [Brad Boehmke](http://bradleyboehmke.github.io/)<br/>
@@ -33,7 +33,7 @@ if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
 
-devtools::install_github("bradleyboehmke/KraljicMatrix")
+devtools::install_github("AFIT-R/KraljicMatrix")
 ```
 
 ## Learning kraljicMatrix

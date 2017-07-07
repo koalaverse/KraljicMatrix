@@ -1,7 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Updated GitHub URL since we moved this to an organization GitHub account
+* Updated GitHub URL on description and README files since we moved this to an organization GitHub account
 
 
 ## Test environment
@@ -10,10 +10,8 @@ This is a resubmission. In this version I have:
 
 
 ## R CMD check results
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 note
 
-Status: 1 NOTE
-R Under development (unstable) (2017-02-19 r72213)
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package

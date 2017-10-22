@@ -5,7 +5,7 @@
 \title{Get values on the efficient frontier}
 \usage{
 get_frontier(data, x, y, quadrant = c("top.right", "bottom.right",
-  "bottom.left", "top.left"))
+  "bottom.left", "top.left"), decreasing = TRUE)
 }
 \arguments{
 \item{data}{A data frame}
@@ -15,14 +15,22 @@ get_frontier(data, x, y, quadrant = c("top.right", "bottom.right",
 \item{y}{Numeric vector of values}
 
 \item{quadrant}{Depending on which direction on each axes defines "better",
-it places the frontier in the appropriate quadrant.}
+it places the frontier in the appropriate quadrant. For example, if large
+\code{x} and large \code{y} values are considered "better" then the default
+"top.right" is appropriate.  If small \code{x} and small \code{y} are
+considered "better" then "bottom.left" is appropriate.}
+
+\item{decreasing}{logical. Should the sort order be increasing or decreasing?}
 }
 \value{
-A Kraljic purchasing matrix plot
+A data frame with the efficient frontier observations.
 }
 \description{
 \code{get_frontier} identifies and extracts the \code{x} and \code{y} values
-that fall along the efficient frontier.
+that fall along the user defined efficient frontier. The efficient frontier
+can be defined by a combination of large \code{x} and large \code{y} values,
+large \code{x} and small \code{y} values, small \code{x} and large \code{y}
+values, or small \code{x} and small \code{y} values.
 }
 \examples{
 
@@ -33,6 +41,9 @@ library(dplyr)
 psc2 <- mutate(psc, x_SAVF_score = SAVF_score(x_attribute, 1, 5, .653),
                     y_SAVF_score = SAVF_score(y_attribute, 1, 10, .7))
 
-kraljic_matrix(psc2, x_SAVF_score, y_SAVF_score)
+get_frontier(psc2, x_SAVF_score, y_SAVF_score)
 
+}
+\seealso{
+\code{\link{geom_frontier}} for plotting the efficient frontier.
 }

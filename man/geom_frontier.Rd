@@ -2,73 +2,49 @@
 % Please edit documentation in R/geom_frontier.R
 \name{geom_frontier}
 \alias{geom_frontier}
-\title{Plot values on the efficient frontier with a ggplot2 object}
+\alias{stat_frontier}
+\title{Plotting the Efficient Frontier}
 \usage{
-geom_frontier(mapping = NULL, data = NULL, stat = "identity",
-  position = "identity", direction = "vh", na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE, ...)
+geom_frontier(mapping = NULL, data = NULL, position = "identity",
+  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE, ...)
+
+stat_frontier(mapping = NULL, data = NULL, geom = "step",
+  position = "identity", na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE, quadrant = "top.right", ...)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{aes()} or
-\code{aes()}. If specified and `inherit.aes = TRUE` (the
-default), it is combined with the default mapping at the top level of the
-plot. You must supply `mapping` if there is no plot mapping.}
+\item{mapping}{Set of aesthetic mappings created by \code{aes} or
+\code{aes_}. If specified and \code{inherit.aes = TRUE} (the default), it is
+combined with the default mapping at the top level of the plot. You must
+supply mapping if there is no plot mapping.}
 
-\item{data}{The data to be displayed in this layer. There are three
-   options:
+\item{data}{The data to be displayed in this layer.}
 
-   If `NULL`, the default, the data is inherited from the plot
-   data as specified in the call to `ggplot()`.
+\item{position}{Position adjustment, either as a string, or the result of a
+call to a position adjustment function.}
 
-   A `data.frame`, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   [fortify()] for which variables will be created.
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with a
+warning. If \code{TRUE}, missing values are silently removed.}
 
-   A `function` will be called with a single argument,
-   the plot data. The return value must be a `data.frame.`, and
-   will be used as the layer data.}
+\item{show.legend}{Logical. Should this layer be included in the legends?
+\code{NA}, the default, includes if any aesthetics are mapped. \code{FALSE}
+never includes, and \code{TRUE} always includes.}
 
-\item{direction}{direction of stairs: 'vh' for vertical then horizontal, or
-'hv' for horizontal then vertical}
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics, rather
+than combining with them. This is most useful for helper functions that
+define both data and aesthetics and shouldn't inherit behaviour from the
+default plot specification, e.g. borders.}
 
-\item{...}{other arguments passed on to layer. These are often aesthetics,
-used to set an aesthetic to a fixed value, like `color = "red"` or `size = 3`.}
+\item{...}{Other arguments passed on to \code{layer}. These are often
+aesthetics, used to set an aesthetic to a fixed value, like
+\code{color = "red"} or \code{size = 3}. They may also be parameters to the
+paired \code{geom}/\code{stat}.}
 
-\item{x}{Numeric vector of values}
+\item{geom}{Use to override the default connection between
+\code{geom_frontier} and \code{stat_frontier}.}
 
-\item{y}{Numeric vector of values}
-
-\item{quadrant}{Depending on which direction on each axes defines "better",
-it places the frontier in the appropriate quadrant. For example, if large
-\code{x} and large \code{y} values are considered "better" then the default
-"top.right" is appropriate.  If small \code{x} and small \code{y} are
-considered "better" then "bottom.left" is appropriate.}
+\item{quadrant}{See \code{\link{get_frontier}}.}
 }
 \description{
-\code{geom_frontier} plots the \code{x} and \code{y} values
-that fall along the user defined efficient frontier. The efficient frontier
-can be defined by a combination of large \code{x} and large \code{y} values,
-large \code{x} and small \code{y} values, small \code{x} and large \code{y}
-values, or small \code{x} and small \code{y} values.
-}
-\section{Aesthetics}{
-
-
-`geom_frontier` understands the following aesthetics:
-    \enumerate{
-      \item \code{x}:
-      \item \code{y}:
-      \item \code{alpha}:
-      \item \code{color}:
-      \item \code{linetype}:
-      \item \code{Size}:
-    }
-}
-
-\examples{
-
-}
-\seealso{
-\code{\link{geom_frontier}} for identifying and extracting the observations that
-lie along the efficient frontier.
+The frontier geom is used to overlay the efficient frontier on a scatterplot.
 }

@@ -2,23 +2,16 @@
 % Please edit documentation in R/get_frontier.R
 \name{get_frontier}
 \alias{get_frontier}
-\alias{get_frontier.data.frame}
-\alias{get_frontier.default}
 \title{Compute the Pareto Frontier}
 \usage{
-get_frontier(x, y, quadrant = c("top.right", "bottom.right", "bottom.left",
-  "top.left"))
-
-\method{get_frontier}{data.frame}(x, y, quadrant = c("top.right",
-  "bottom.right", "bottom.left", "top.left"))
-
-\method{get_frontier}{default}(x, y, quadrant = c("top.right", "bottom.right",
+get_frontier(x, which.cols = 1:2, quadrant = c("top.right", "bottom.right",
   "bottom.left", "top.left"))
 }
 \arguments{
-\item{x}{A data frame or numeric vector.}
+\item{x}{A data frame.}
 
-\item{y}{A numeric vector.}
+\item{which.cols}{If \code{x} is a data frame, then which columns to use in
+computing the efficient frontier.}
 
 \item{quadrant}{Chararacter string specifying which quadrant the frontier
 should appear in. Default is \code{"top.right"}.}

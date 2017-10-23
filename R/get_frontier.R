@@ -2,9 +2,10 @@
 #'
 #' Extract the points that make up the pareto frontier from a set of data.
 #'
-#' @param x A data frame or numeric vector.
+#' @param x A data frame.
 #'
-#' @param y A numeric vector.
+#' @param which.cols If \code{x} is a data frame, then which columns to use in
+#' computing the efficient frontier.
 #'
 #' @param quadrant Chararacter string specifying which quadrant the frontier
 #' should appear in. Default is \code{"top.right"}.
@@ -13,30 +14,22 @@
 #' frontier.
 #'
 #' @export
-get_frontier <- function(x, y, quadrant = c("top.right", "bottom.right",
-                                            "bottom.left", "top.left")) {
-  UseMethod("get_frontier")
-}
-
-
-#' @rdname get_frontier
-#'
-#' @export
-get_frontier.data.frame <- function(x, y,
-                                    quadrant = c("top.right", "bottom.right",
-                                                 "bottom.left", "top.left"))
-{
-  get_frontier.default(x[[1L]], x[[2L]], quadrant = quadrant)
-}
-
-
-#' @rdname get_frontier
-#'
-#' @export
-get_frontier.default <- function(x, y, quadrant = c("top.right", "bottom.right",
-                                                    "bottom.left", "top.left"))
-{
-  z <- cbind(x, y)
+get_frontier <- function(x, which.cols = 1:2,
+                         quadrant = c("top.right", "bottom.right",
+                                      "bottom.left", "top.left")) {
+  if (!is.data.frame(x)) {
+    stop(deparse(substitute(x)), " is not a data frame.")
+  }
+  if (length(which.cols) != 2) {
+    stop("which.cols should be a vector of length 2.")
+  }
+  if (is.character(which.cols)) {
+    if (!all(which.cols %in% names(x))) {
+      stop("Specified columns could not be found in ", deparse(substitute(x)),
+           ".")
+    }
+  }
+  z <- x[which.cols]
   quadrant <- match.arg(quadrant)
   res <- if (quadrant == "top.right") {
     zz <- z[order(z[, 1L], z[, 2L], decreasing = TRUE), ]

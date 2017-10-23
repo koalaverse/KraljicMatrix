@@ -2,7 +2,7 @@
 StatFrontier <- ggplot2::ggproto("StatFrontier", ggplot2::Stat,
   required_aes = c("x", "y"),
   compute_group = function(data, scales, params, quadrant = "top.right") {
-    get_frontier.default(x = data$x, y = data$y, quadrant = quadrant)
+    get_frontier(data, quadrant = quadrant)
   }
 )
 

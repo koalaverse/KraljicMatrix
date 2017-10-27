@@ -6,10 +6,12 @@
 
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/KraljicMatrix)](https://cran.r-project.org/package=KraljicMatrix)
-[![Downloads](http://cranlogs.r-pkg.org/badges/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/KraljicMatrix)
-[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)
+[![Travis-CI Build Status](https://travis-ci.org/AFIT-R/KraljicMatrix.svg?branch=master)](https://travis-ci.org/AFIT-R/KraljicMatrix) 
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/bradleyboehmke/KraljicMatrix?branch=master&svg=true)](https://ci.appveyor.com/project/bradleyboehmke/KraljicMatrix) [![codecov](https://codecov.io/gh/AFIT-R/KraljicMatrix/branch/master/graph/badge.svg)](https://codecov.io/gh/AFIT-R/KraljicMatrix)
 [![DOI](https://zenodo.org/badge/74397607.svg)](https://zenodo.org/badge/latestdoi/74397607)
 [![status](http://joss.theoj.org/papers/10.21105/joss.00170/status.svg)](http://joss.theoj.org/papers/10.21105/joss.00170)
+[![Downloads](http://cranlogs.r-pkg.org/badges/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/KraljicMatrix)
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)
 
 
 `KraljicMatrix` is an R package for implementing Kraljic's (1983)[^kraljic] approach to strategically analyze a firm’s purchasing portfolio.  It has two main goals:

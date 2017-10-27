@@ -6,6 +6,8 @@
 
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/KraljicMatrix)](https://cran.r-project.org/package=KraljicMatrix)
+[![Downloads](http://cranlogs.r-pkg.org/badges/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/KraljicMatrix)
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)
 [![DOI](https://zenodo.org/badge/74397607.svg)](https://zenodo.org/badge/latestdoi/74397607)
 [![status](http://joss.theoj.org/papers/10.21105/joss.00170/status.svg)](http://joss.theoj.org/papers/10.21105/joss.00170)
 

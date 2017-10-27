@@ -8,6 +8,10 @@ This is a resubmission. In this version I have:
 
 ## Test environment
 * Tested on local OS X install, R 3.4.2
+* ubuntu 12.04 (on travis-ci), R 3.4.2
+* Windows (on apveyor)
+* win-builder (devel and release)
+
 * win-builder (devel and release)
 
 

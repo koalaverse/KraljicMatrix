@@ -8,3 +8,6 @@
 ^cran-comments\.md$
 ^paper$
 ^docs$
+^\.travis\.yml$
+^appveyor\.yml$
+^codecov\.yml$

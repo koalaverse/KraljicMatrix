@@ -2,24 +2,46 @@
 % Please edit documentation in R/get_frontier.R
 \name{get_frontier}
 \alias{get_frontier}
-\title{Compute the Pareto Frontier}
+\title{Compute the Pareto Optimal Frontier}
 \usage{
-get_frontier(x, which.cols = 1:2, quadrant = c("top.right", "bottom.right",
-  "bottom.left", "top.left"))
+get_frontier(data, x, y, quadrant = c("top.right", "bottom.right",
+  "bottom.left", "top.left"), decreasing = TRUE)
 }
 \arguments{
-\item{x}{A data frame.}
+\item{data}{A data frame.}
 
-\item{which.cols}{If \code{x} is a data frame, then which columns to use in
-computing the efficient frontier.}
+\item{x}{A numeric vector.}
+
+\item{y}{A numeric vector.}
 
 \item{quadrant}{Chararacter string specifying which quadrant the frontier
 should appear in. Default is \code{"top.right"}.}
+
+\item{decreasing}{Logical value indicating whether the data returned is in
+decreasing or ascending order (ordered by \code{x} and then \code{y}).
+Default is decreasing order.}
 }
 \value{
 A data frame containing the data points that make up the efficient
 frontier.
 }
 \description{
-Extract the points that make up the pareto frontier from a set of data.
+Extract the points that make up the Pareto frontier from a set of data.
+}
+\examples{
+
+# default will find the Pareto optimal observations in top right quadrant
+get_frontier(mtcars, mpg, wt)
+
+# the output can be in descending or ascending order
+get_frontier(mtcars, mpg, wt, decreasing = FALSE)
+
+# use quadrant parameter to change how you define the efficient frontier
+get_frontier(airquality, Ozone, Temp, quadrant = 'top.left')
+
+get_frontier(airquality, Ozone, Temp, quadrant = 'bottom.right')
+
+}
+\seealso{
+\code{\link{geom_frontier}} for plotting the Pareto front
 }

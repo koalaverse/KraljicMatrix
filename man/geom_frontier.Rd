@@ -3,14 +3,15 @@
 \name{geom_frontier}
 \alias{geom_frontier}
 \alias{stat_frontier}
-\title{Plotting the Efficient Frontier}
+\title{Plotting the Pareto Optimal Frontier}
 \usage{
 geom_frontier(mapping = NULL, data = NULL, position = "identity",
-  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE, ...)
+  direction = "vh", na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
+  ...)
 
 stat_frontier(mapping = NULL, data = NULL, geom = "step",
-  position = "identity", na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, quadrant = "top.right", ...)
+  position = "identity", direction = "vh", na.rm = FALSE,
+  show.legend = NA, inherit.aes = TRUE, quadrant = "top.right", ...)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{aes} or
@@ -22,6 +23,9 @@ supply mapping if there is no plot mapping.}
 
 \item{position}{Position adjustment, either as a string, or the result of a
 call to a position adjustment function.}
+
+\item{direction}{Direction of stairs: 'vh' for vertical then horizontal, or 'hv'
+for horizontal then vertical.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with a
 warning. If \code{TRUE}, missing values are silently removed.}
@@ -47,4 +51,29 @@ paired \code{geom}/\code{stat}.}
 }
 \description{
 The frontier geom is used to overlay the efficient frontier on a scatterplot.
+}
+\examples{
+
+\dontrun{
+
+# default will find the efficient front in top right quadrant
+ggplot(mtcars, aes(mpg, wt)) +
+  geom_point() +
+  geom_frontier()
+
+# change the direction of the steps
+ggplot(mtcars, aes(mpg, wt)) +
+  geom_point() +
+  geom_frontier(direction = 'vh')
+
+# use quadrant parameter to change how you define the efficient frontier
+ggplot(aiquality, aes(Ozone, Temp)) +
+  geom_point() +
+  geom_frontier(quadrant = 'top.left')
+
+ggplot(aiquality, aes(Ozone, Temp)) +
+  geom_point() +
+  geom_frontier(quadrant = 'bottom.right')
+}
+
 }

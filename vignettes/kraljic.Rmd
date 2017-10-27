@@ -27,18 +27,20 @@ A significant question in applying the KPM is how to categorize purchased produc
 
 ## Primary functions in `kraljicMatrix`
 
-There are eight primary functions provided by `kraljicMatrix` as follows:
+There are ten primary functions provided by `kraljicMatrix` as follows:
 
 Function              | Purpose
 ----------------------|----------------------------------------------------
-`SAVF_score`          | Computes a utility score based on an exponential single attribute value function
-`SAVF_preferred_rho`  | Computes the preferred rho that minimizes the squared error between subject matter inputs and exponentially fitted utility scores
-`SAVF_plot_rho_error` | Plots the squared error terms for the rho search space to illustrate the preferred rho that minimizes the squared error between subject matter desired values and exponentially fitted scores
-`SAVF_plot`           | Plots the single attribute utility curve along with the subject matter desired values for comparison
-`MAVF_score`          | Computes the multi-attribute value score based on `x` and `y` attribute utility scores and their respective weights
-`MAVF_sensitivity`    | Computes summary statistics for multi-attribute value scores for `x` and `y` given a range of swing weights for each attribute
-`kraljic_quadrant`    | Identifies the Kraljic purchasing matrix quadrant for each product or service based on the attribute utility scores of \code{x} and \code{y}
-`kraljic_matrix`      | Plots each product or service in the Kraljic purchasing matrix based on the attribute value score of `x` and `y`
+`SAVF_score`          | Computes a utility score based on an exponential single attribute value function.
+`SAVF_preferred_rho`  | Computes the preferred rho that minimizes the squared error between subject matter inputs and exponentially fitted utility scores.
+`SAVF_plot_rho_error` | Plots the squared error terms for the rho search space to illustrate the preferred rho that minimizes the squared error between subject matter desired values and exponentially fitted scores.
+`SAVF_plot`           | Plots the single attribute utility curve along with the subject matter desired values for comparison.
+`MAVF_score`          | Computes the multi-attribute value score based on `x` and `y` attribute utility scores and their respective weights.
+`MAVF_sensitivity`    | Computes summary statistics for multi-attribute value scores for `x` and `y` given a range of swing weights for each attribute.
+`kraljic_quadrant`    | Identifies the Kraljic purchasing matrix quadrant for each product or service based on the attribute utility scores of \code{x} and \code{y}.
+`kraljic_matrix`      | Plots each product or service in the Kraljic purchasing matrix based on the attribute value score of `x` and `y`.
+`get_frontier`        | Identifies and extracts the observations that have the Pareto optimal combination of `x` and `y`.
+`geom_frontier`       | Plots the Pareto optimal front in a `ggplot2` object.
 
 
 Furthermore, an example dataset `psc` is provided in the `kraljicMatrix` package. This data contains 200 product and service contracts (PSC).  Each PSC has an x attribute (i.e. supply risk) score from 1 (worst) to 5 (best) and y attribute (i.e. profit impact) score from 1 (worst) to 10 (best).

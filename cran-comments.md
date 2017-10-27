@@ -1,11 +1,13 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Updated GitHub URL on description and README files since we moved this to an organization GitHub account
+* Created a new function to find the Pareto optimal observations
+* Created a new function to plot the Pareto optimal front
+* Incorporated the pipe (`%>%`) operator 
 
 
 ## Test environment
-* Tested on local OS X install, R 3.4
+* Tested on local OS X install, R 3.4.2
 * win-builder (devel and release)
 
 

@@ -2,12 +2,12 @@
 StatFrontier <- ggplot2::ggproto("StatFrontier", ggplot2::Stat,
   required_aes = c("x", "y"),
   compute_group = function(data, scales, params, quadrant = "top.right") {
-    get_frontier(data, quadrant = quadrant)
+    get_frontier(data, x, y, quadrant = quadrant)
   }
 )
 
 
-#' Plotting the Efficient Frontier
+#' Plotting the Pareto Optimal Frontier
 #'
 #' The frontier geom is used to overlay the efficient frontier on a scatterplot.
 #'
@@ -36,6 +36,9 @@ StatFrontier <- ggplot2::ggproto("StatFrontier", ggplot2::Stat,
 #' @param geom Use to override the default connection between
 #' \code{geom_frontier} and \code{stat_frontier}.
 #'
+#' @param direction Direction of stairs: 'vh' for vertical then horizontal, or 'hv'
+#' for horizontal then vertical.
+#'
 #' @param quadrant See \code{\link{get_frontier}}.
 #'
 #' @param ... Other arguments passed on to \code{layer}. These are often
@@ -43,16 +46,40 @@ StatFrontier <- ggplot2::ggproto("StatFrontier", ggplot2::Stat,
 #' \code{color = "red"} or \code{size = 3}. They may also be parameters to the
 #' paired \code{geom}/\code{stat}.
 #'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' # default will find the efficient front in top right quadrant
+#' ggplot(mtcars, aes(mpg, wt)) +
+#'   geom_point() +
+#'   geom_frontier()
+#'
+#' # change the direction of the steps
+#' ggplot(mtcars, aes(mpg, wt)) +
+#'   geom_point() +
+#'   geom_frontier(direction = 'vh')
+#'
+#' # use quadrant parameter to change how you define the efficient frontier
+#' ggplot(aiquality, aes(Ozone, Temp)) +
+#'   geom_point() +
+#'   geom_frontier(quadrant = 'top.left')
+#'
+#' ggplot(aiquality, aes(Ozone, Temp)) +
+#'   geom_point() +
+#'   geom_frontier(quadrant = 'bottom.right')
+#' }
+#'
 #' @rdname geom_frontier
 #'
 #' @export
 geom_frontier <- function(mapping = NULL, data = NULL, position = "identity",
-                          na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
-                          ...) {
+                          direction = 'vh', na.rm = FALSE, show.legend = NA,
+                          inherit.aes = TRUE, ...) {
   ggplot2::layer(
     stat = StatFrontier, geom = ggplot2::GeomStep, data = data, mapping = mapping,
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, ...)
+    position = position, show.legend = show.legend,
+    inherit.aes = inherit.aes, params = list(na.rm = na.rm, ...)
   )
 }
 
@@ -61,12 +88,12 @@ geom_frontier <- function(mapping = NULL, data = NULL, position = "identity",
 #'
 #' @export
 stat_frontier <- function(mapping = NULL, data = NULL, geom = "step",
-                          position = "identity", na.rm = FALSE,
-                          show.legend = NA, inherit.aes = TRUE,
-                          quadrant = "top.right", ...) {
+                          position = "identity", direction = 'vh',
+                          na.rm = FALSE, show.legend = NA,
+                          inherit.aes = TRUE, quadrant = "top.right", ...) {
   ggplot2::layer(
     stat = StatFrontier, data = data, mapping = mapping, geom = geom,
-    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
-    params = list(quadrant = quadrant, ...)
+    position = position, show.legend = show.legend,
+    inherit.aes = inherit.aes, params = list(quadrant = quadrant, ...)
   )
 }

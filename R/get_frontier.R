@@ -39,7 +39,7 @@ get_frontier <- function(data, x, y,
                                       "bottom.left", "top.left"),
                          decreasing = TRUE) {
   if (!is.data.frame(data)) {
-    stop(deparse(substitute(x)), " is not a data frame.")
+    stop(deparse(substitute(data)), " is not a data frame.")
   }
 
   x_col <- deparse(substitute(x))

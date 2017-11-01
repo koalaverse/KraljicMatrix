@@ -108,6 +108,11 @@ MAVF_sensitivity <- function(data, x, y, x_wt_min, x_wt_max, y_wt_min, y_wt_max)
   y_wt <- stats::runif(1000, min = y_wt_min, max = y_wt_max)
   w_wt <- 1 - x_wt - y_wt
 
+  # return error if x or y columns are not in data frame
+  if(!deparse(substitute(x)) %in% names(data) | !deparse(substitute(y)) %in% names(data)) {
+    stop("`x` and `y` must both be a variable of the supplied data frame", call. = FALSE)
+  }
+
   # parse out vectors from data
   x_col <- data[[deparse(substitute(x))]]
   y_col <- data[[deparse(substitute(y))]]

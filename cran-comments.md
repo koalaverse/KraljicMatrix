@@ -4,14 +4,13 @@ This is a resubmission. In this version I have:
 * Created a new function to find the Pareto optimal observations
 * Created a new function to plot the Pareto optimal front
 * Incorporated the pipe (`%>%`) operator 
+* Added integrated testing
 
 
 ## Test environment
 * Tested on local OS X install, R 3.4.2
 * ubuntu 12.04 (on travis-ci), R 3.4.2
 * Windows (on apveyor)
-* win-builder (devel and release)
-
 * win-builder (devel and release)
 
 

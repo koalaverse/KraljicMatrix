@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kraljic quadrant assignment function — kraljic_quadrant • KraljicMatrix</title>
+<title>Compute the Pareto Optimal Frontier — get_frontier • KraljicMatrix</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -79,67 +79,99 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Kraljic quadrant assignment function</h1>
+    <h1>Compute the Pareto Optimal Frontier</h1>
     </div>
 
     
-    <p><code>kraljic_quadrant</code> assigns the Kraljic purchasing matrix quadrant based
-on the attribute value score of <code>x</code> and <code>y</code></p>
+    <p>Extract the points that make up the Pareto frontier from a set of data.</p>
     
 
-    <pre class="usage"><span class='fu'>kraljic_quadrant</span>(<span class='no'>x</span>, <span class='no'>y</span>)</pre>
+    <pre class="usage"><span class='fu'>get_frontier</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>quadrant</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"top.right"</span>, <span class='st'>"bottom.right"</span>,
+  <span class='st'>"bottom.left"</span>, <span class='st'>"top.left"</span>), <span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>data</th>
+      <td><p>A data frame.</p></td>
+    </tr>
+    <tr>
       <th>x</th>
-      <td><p>Numeric vector of values</p></td>
+      <td><p>A numeric vector.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>Numeric vector of values with compatible dimensions to <code>x</code></p></td>
+      <td><p>A numeric vector.</p></td>
+    </tr>
+    <tr>
+      <th>quadrant</th>
+      <td><p>Chararacter string specifying which quadrant the frontier
+should appear in. Default is <code>"top.right"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>decreasing</th>
+      <td><p>Logical value indicating whether the data returned is in
+decreasing or ascending order (ordered by <code>x</code> and then <code>y</code>).
+Default is decreasing order.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of the same length as <code>x</code> and <code>y</code> with the relevant
-Kraljic quadrant name</p>
+    <p>A data frame containing the data points that make up the efficient
+frontier.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='SAVF_score.html'>SAVF_score</a></code> for computing the exponential single attribute value
-score for <code>x</code> and <code>y</code></p>
+    <p><code><a href='geom_frontier.html'>geom_frontier</a></code> for plotting the Pareto front</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># Given the following \code{x} and \code{y} attribute values  we can determine</span>
-<span class='co'># which quadrant each product or service falls in:</span>
-
-<span class='co'># to add a new variable while preserving existing data</span>
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)
-
-<span class='no'>psc2</span> <span class='kw'>&lt;-</span> <span class='no'>psc</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>mutate</span>(<span class='kw'>x_SAVF_score</span> <span class='kw'>=</span> <span class='fu'><a href='SAVF_score.html'>SAVF_score</a></span>(<span class='no'>x_attribute</span>, <span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>.653</span>),
-         <span class='kw'>y_SAVF_score</span> <span class='kw'>=</span> <span class='fu'><a href='SAVF_score.html'>SAVF_score</a></span>(<span class='no'>y_attribute</span>, <span class='fl'>1</span>, <span class='fl'>10</span>, <span class='fl'>.7</span>))
-
-<span class='no'>psc2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>mutate</span>(<span class='kw'>quadrant</span> <span class='kw'>=</span> <span class='fu'>kraljic_quadrant</span>(<span class='no'>x_SAVF_score</span>, <span class='no'>y_SAVF_score</span>))</div><div class='output co'>#&gt; # A tibble: 200 x 6
-#&gt;      PSC x_attribute y_attribute x_SAVF_score y_SAVF_score  quadrant
-#&gt;    &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;chr&gt;
-#&gt;  1  D233        3.01        4.84    0.7887459    0.9336977  Leverage
-#&gt;  2  F352        4.34        5.64    0.9573299    0.9629164  Leverage
-#&gt;  3  T713        3.37        4.30    0.8495938    0.9023958  Leverage
-#&gt;  4  K833        2.67        5.53    0.7165401    0.9598009  Leverage
-#&gt;  5  Q121        3.48        4.33    0.8655080    0.9044624  Leverage
-#&gt;  6  C791        3.32        7.32    0.8419735    0.9898314  Leverage
-#&gt;  7  Y207        3.48        5.42    0.8655080    0.9564360  Leverage
-#&gt;  8  W439        2.47        3.35    0.6659448    0.8084720  Leverage
-#&gt;  9  N290        1.66        4.02    0.3778582    0.8808636 Strategic
-#&gt; 10  C251        1.00        7.47    0.0000000    0.9910284 Strategic
-#&gt; # ... with 190 more rows</div><div class='input'>
+<span class='co'># default will find the Pareto optimal observations in top right quadrant</span>
+<span class='fu'>get_frontier</span>(<span class='no'>mtcars</span>, <span class='no'>mpg</span>, <span class='no'>wt</span>)</div><div class='output co'>#&gt;                      mpg    wt
+#&gt; Toyota Corolla      33.9 1.835
+#&gt; Fiat 128            32.4 2.200
+#&gt; Merc 240D           24.4 3.190
+#&gt; Hornet 4 Drive      21.4 3.215
+#&gt; Pontiac Firebird    19.2 3.845
+#&gt; Merc 450SE          16.4 4.070
+#&gt; Chrysler Imperial   14.7 5.345
+#&gt; Lincoln Continental 10.4 5.424</div><div class='input'>
+<span class='co'># the output can be in descending or ascending order</span>
+<span class='fu'>get_frontier</span>(<span class='no'>mtcars</span>, <span class='no'>mpg</span>, <span class='no'>wt</span>, <span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;                      mpg    wt
+#&gt; Lincoln Continental 10.4 5.424
+#&gt; Chrysler Imperial   14.7 5.345
+#&gt; Merc 450SE          16.4 4.070
+#&gt; Pontiac Firebird    19.2 3.845
+#&gt; Hornet 4 Drive      21.4 3.215
+#&gt; Merc 240D           24.4 3.190
+#&gt; Fiat 128            32.4 2.200
+#&gt; Toyota Corolla      33.9 1.835</div><div class='input'>
+<span class='co'># use quadrant parameter to change how you define the efficient frontier</span>
+<span class='fu'>get_frontier</span>(<span class='no'>airquality</span>, <span class='no'>Ozone</span>, <span class='no'>Temp</span>, <span class='kw'>quadrant</span> <span class='kw'>=</span> <span class='st'>'top.left'</span>)</div><div class='output co'>#&gt;     Ozone Temp
+#&gt; 120    76   97
+#&gt; 126    73   93
+#&gt; 40     71   90
+#&gt; 41     39   87
+#&gt; 97     35   85
+#&gt; 129    32   84
+#&gt; 95     16   82
+#&gt; 94      9   81
+#&gt; 76      7   80
+#&gt; 23      4   61
+#&gt; 21      1   59</div><div class='input'>
+<span class='fu'>get_frontier</span>(<span class='no'>airquality</span>, <span class='no'>Ozone</span>, <span class='no'>Temp</span>, <span class='kw'>quadrant</span> <span class='kw'>=</span> <span class='st'>'bottom.right'</span>)</div><div class='output co'>#&gt;     Ozone Temp
+#&gt; 117   168   81
+#&gt; 30    115   79
+#&gt; 139    46   78
+#&gt; 1      41   67
+#&gt; 17     34   66
+#&gt; 24     32   61
+#&gt; 8      19   59
+#&gt; 15     18   58
+#&gt; 18      6   57</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

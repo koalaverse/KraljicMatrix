@@ -9,7 +9,7 @@
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -34,10 +34,13 @@
 <li>
   <a href="articles/index.html">Articles</a>
 </li>
+<li>
+  <a href="news/index.html">News</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bradleyboehmke/KraljicMatrix">
+  <a href="https://github.com/AFIT-R/KraljicMatrix">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -53,11 +56,12 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="kraljicmatrix" class="section level1">
+    
+
+<div id="kraljicmatrix" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#kraljicmatrix" class="anchor"> </a>KraljicMatrix</h1></div>
-<p><strong>Author:</strong> <a href="http://bradleyboehmke.github.io/">Brad Boehmke</a><br><strong>License:</strong> <a href="https://opensource.org/licenses/MIT">MIT</a></p>
-<p><a href="https://cran.r-project.org/package=KraljicMatrix"><img src="http://www.r-pkg.org/badges/version/KraljicMatrix" alt="CRAN_Status_Badge"></a> <a href="https://zenodo.org/badge/latestdoi/74397607"><img src="https://zenodo.org/badge/74397607.svg" alt="DOI"></a> <a href="http://joss.theoj.org/papers/10.21105/joss.00170"><img src="http://joss.theoj.org/papers/10.21105/joss.00170/status.svg" alt="status"></a></p>
+<a href="#kraljicmatrix" class="anchor"></a>KraljicMatrix <img src="tools/kraljicmatrix_logo.png" align="right" width="120" height="139">
+</h1></div>
 <p><code>KraljicMatrix</code> is an R package for implementing Kraljic’s (1983)[^kraljic] approach to strategically analyze a firm’s purchasing portfolio. It has two main goals:</p>
 <ul>
 <li>Apply single and multi-attribute utility functions to rank-order products and services based on managerial preferences</li>
@@ -65,7 +69,7 @@
 </ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"> </a>Installation</h2>
+<a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install <code>KraljicMatrix</code> two ways.</p>
 <ul>
 <li>Using the latest released version from CRAN:</li>
@@ -78,14 +82,15 @@
   install.packages("devtools")
 }
 
-devtools::install_github("bradleyboehmke/KraljicMatrix")</code></pre>
+devtools::install_github("AFIT-R/KraljicMatrix")</code></pre>
 </div>
 <div id="learning-kraljicmatrix" class="section level2">
 <h2 class="hasAnchor">
-<a href="#learning-kraljicmatrix" class="anchor"> </a>Learning kraljicMatrix</h2>
-<p>To get started with <code>KraljicMatrix</code>, read the intro vignette: <code><a href="articles/kraljic.html">vignette("kraljic", package = "KraljicMatrix")</a></code>. This provides a thorough introduction to the functions provided in the package. For deeper understanding behind the integration of single and multi-attribute utility thoery with the Kraljic Portfolio Matrix for strategic purchasing, read this <a href="https://www.dropbox.com/s/izxw97rjcu8e2t6/Article%20Submitted%20-%20Revised%20%282016-12-13.docx?dl=0">paper</a>.</p>
+<a href="#learning-kraljicmatrix" class="anchor"></a>Learning kraljicMatrix</h2>
+<p>To get started with <code>KraljicMatrix</code>, read the intro vignette: <code>vignette("kraljic", package = "KraljicMatrix")</code>. This provides a thorough introduction to the functions provided in the package. For deeper understanding behind the integration of single and multi-attribute utility thoery with the Kraljic Portfolio Matrix for strategic purchasing, read this <a href="https://www.dropbox.com/s/izxw97rjcu8e2t6/Article%20Submitted%20-%20Revised%20%282016-12-13.docx?dl=0">paper</a>.</p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3" id="sidebar">
@@ -93,9 +98,9 @@ devtools::install_github("bradleyboehmke/KraljicMatrix")</code></pre>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cran.r-project.org/package=KraljicMatrix">https://​cran.r-project.org/​package=KraljicMatrix</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/bradleyboehmke/KraljicMatrix">https://​github.com/​bradleyboehmke/​KraljicMatrix</a>
+<li>Browse source code at <br><a href="https://github.com/AFIT-R/KraljicMatrix">https://​github.com/​AFIT-R/​KraljicMatrix</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/bradleyboehmke/KraljicMatrix/issues">https://​github.com/​bradleyboehmke/​KraljicMatrix/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/AFIT-R/KraljicMatrix/issues">https://​github.com/​AFIT-R/​KraljicMatrix/​issues</a>
 </li>
 </ul>
 <h2>License</h2>
@@ -103,14 +108,26 @@ devtools::install_github("bradleyboehmke/KraljicMatrix")</code></pre>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Bradley Boehmke <br><small class="roles"> Author, maintainer </small> </li>
+<li>Brandon Greenwell <br><small class="roles"> Author </small> </li>
+<li>Andrew McCarthy <br><small class="roles"> Author </small> </li>
 <li><a href="authors.html">All authors...</a></li>
+</ul>
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=KraljicMatrix"><img src="http://www.r-pkg.org/badges/version/KraljicMatrix" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://travis-ci.org/AFIT-R/KraljicMatrix"><img src="https://travis-ci.org/AFIT-R/KraljicMatrix.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/AFIT-R/KraljicMatrix"><img src="https://ci.appveyor.com/api/projects/status/github/AFIT-R/KraljicMatrix?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://codecov.io/gh/AFIT-R/KraljicMatrix"><img src="https://codecov.io/gh/AFIT-R/KraljicMatrix/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="http://joss.theoj.org/papers/10.21105/joss.00170"><img src="http://joss.theoj.org/papers/10.21105/joss.00170/status.svg" alt="status"></a></li>
+<li><a href="http://cranlogs.r-pkg.org/badges/KraljicMatrix"><img src="http://cranlogs.r-pkg.org/badges/KraljicMatrix" alt="Downloads"></a></li>
+<li><a href="http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix"><img src="http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix" alt="Total Downloads"></a></li>
 </ul>
 </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Bradley Boehmke.</p>
+  <p>Developed by Bradley Boehmke, Brandon Greenwell, Andrew McCarthy.</p>
 </div>
 
 <div class="pkgdown">

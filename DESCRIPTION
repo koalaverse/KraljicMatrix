@@ -9,7 +9,7 @@ Authors@R: c(
     person("Robert", "Montgomery", email = "robert.montgomery.1@usafa.edu", role = c("ctb"))
     )
 Maintainer: Bradley Boehmke <bradleyboehmke@gmail.com>
-Date: 2017-7-07
+Date: 2017-11-01
 Description: Implements a quantified approach to the Kraljic Matrix (Kraljic, 1983, <https://hbr.org/1983/09/purchasing-must-become-supply-management>)
     for strategically analyzing a firm’s purchasing portfolio. It combines multi-objective decision analysis to measure purchasing characteristics and
     uses this information to place products and services within the Kraljic Matrix.

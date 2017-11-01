@@ -64,14 +64,14 @@ ggplot(mtcars, aes(mpg, wt)) +
 # change the direction of the steps
 ggplot(mtcars, aes(mpg, wt)) +
   geom_point() +
-  geom_frontier(direction = 'vh')
+  geom_frontier(direction = 'hv')
 
 # use quadrant parameter to change how you define the efficient frontier
-ggplot(aiquality, aes(Ozone, Temp)) +
+ggplot(airquality, aes(Ozone, Temp)) +
   geom_point() +
   geom_frontier(quadrant = 'top.left')
 
-ggplot(aiquality, aes(Ozone, Temp)) +
+ggplot(airquality, aes(Ozone, Temp)) +
   geom_point() +
   geom_frontier(quadrant = 'bottom.right')
 }

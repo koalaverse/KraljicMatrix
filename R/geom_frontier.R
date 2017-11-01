@@ -58,14 +58,14 @@ StatFrontier <- ggplot2::ggproto("StatFrontier", ggplot2::Stat,
 #' # change the direction of the steps
 #' ggplot(mtcars, aes(mpg, wt)) +
 #'   geom_point() +
-#'   geom_frontier(direction = 'vh')
+#'   geom_frontier(direction = 'hv')
 #'
 #' # use quadrant parameter to change how you define the efficient frontier
-#' ggplot(aiquality, aes(Ozone, Temp)) +
+#' ggplot(airquality, aes(Ozone, Temp)) +
 #'   geom_point() +
 #'   geom_frontier(quadrant = 'top.left')
 #'
-#' ggplot(aiquality, aes(Ozone, Temp)) +
+#' ggplot(airquality, aes(Ozone, Temp)) +
 #'   geom_point() +
 #'   geom_frontier(quadrant = 'bottom.right')
 #' }
@@ -79,7 +79,7 @@ geom_frontier <- function(mapping = NULL, data = NULL, position = "identity",
   ggplot2::layer(
     stat = StatFrontier, geom = ggplot2::GeomStep, data = data, mapping = mapping,
     position = position, show.legend = show.legend,
-    inherit.aes = inherit.aes, params = list(na.rm = na.rm, ...)
+    inherit.aes = inherit.aes, params = list(na.rm = na.rm, direction = direction, ...)
   )
 }
 

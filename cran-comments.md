@@ -1,10 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Created a new function to find the Pareto optimal observations
-* Created a new function to plot the Pareto optimal front
-* Incorporated the pipe (`%>%`) operator 
-* Added integrated testing
+* Updated URLs for transferred repo to new Github organization
 
 
 ## Test environment

@@ -31,7 +31,7 @@ if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
 
-devtools::install_github("AFIT-R/KraljicMatrix")
+devtools::install_github("koalaverse/KraljicMatrix")
 ```
 
 ## Learning kraljicMatrix

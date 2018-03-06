@@ -5,18 +5,15 @@ This is a resubmission. In this version I have:
 
 
 ## Test environment
-* Tested on local OS X install, R 3.4.2
-* ubuntu 14.04 (on travis-ci), R 3.4.2
+* Tested on local OS X install, R 3.4.3
+* ubuntu 14.04 (on travis-ci), R 3.4.3
 * Windows (on apveyor)
 * win-builder (devel and release)
 
 
 ## R CMD check results
-There were no ERRORs or WARNINGS.
-
-There was 1 NOTE on win-builder:
-
-* R Under development (unstable) (2017-09-12 r73242)
+R CMD check results
+0 errors | 0 warnings | 0 notes
 
 
 ## Downstream dependencies

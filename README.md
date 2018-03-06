@@ -1,6 +1,6 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/KraljicMatrix)](https://cran.r-project.org/package=KraljicMatrix)
 [![Travis-CI Build Status](https://travis-ci.org/koalaverse/KraljicMatrix.svg?branch=master)](https://travis-ci.org/koalaverse/KraljicMatrix) 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/koalaverse/KraljicMatrix?branch=master&svg=true)](https://ci.appveyor.com/project/koalaverse/KraljicMatrix) [![codecov](https://codecov.io/gh/koalaverse/KraljicMatrix/branch/master/graph/badge.svg)](https://codecov.io/gh/koalaverse/KraljicMatrix)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/8v0nlr960py4pklw?svg=true)](https://ci.appveyor.com/project/bradleyboehmke/kraljicmatrix) [![codecov](https://codecov.io/gh/koalaverse/KraljicMatrix/branch/master/graph/badge.svg)](https://codecov.io/gh/koalaverse/KraljicMatrix)
 [![status](http://joss.theoj.org/papers/10.21105/joss.00170/status.svg)](http://joss.theoj.org/papers/10.21105/joss.00170)
 [![Downloads](http://cranlogs.r-pkg.org/badges/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/KraljicMatrix)
 [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)](http://cranlogs.r-pkg.org/badges/grand-total/KraljicMatrix)
